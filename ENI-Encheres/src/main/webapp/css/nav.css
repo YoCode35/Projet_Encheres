@@ -1,0 +1,281 @@
+/*===============================================================================*/
+/* Début Menu déroulant Général type "Hamburger" */
+.menu-container_general {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 15px;  
+  left: 0;
+  z-index: 1000;
+}
+
+.menu-icon {
+  font-size: 50px;
+  cursor: pointer;
+  color: #e1f1ff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.menu-container_general input {
+  display: none;
+}
+
+.menu {
+		position: fixed;
+		list-style: none;
+		margin: 10px 45px;
+		padding: 0;
+		width: 200px;
+		overflow: hidden;
+		transition: height 0.3s ease-in-out;
+		height: 0;
+		background-color: rgba(114, 158, 191, 0.97); /* Fond transparent */
+		border-radius: 10px;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.menu li {
+			font-family: 'Inter', sans-serif;
+			font-size: 0.9em;
+			padding: 15px;
+			text-align: center;
+			border-bottom: 1px solid rgb(54, 73, 88);
+}
+
+.menu li:last-child {
+  border-bottom: none;
+}
+
+.menu li:hover {
+    background-color: rgb(54, 73, 88); /* Couleur de fond gris plus foncé lorsqu'on survole les liens */
+}
+
+.menu a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    transition: color 0.6s, background-color 0.6s; /* Transition de couleur et de fond lorsqu'on survole les liens */
+}
+
+.menu li:hover a {
+    color: rgb(255, 255, 255); /* Couleur du texte plus foncée lorsqu'on survole les liens */
+}
+
+.menu-container_general:hover .menu {
+  height: auto;
+}
+
+.menu li.submenu-container:not(:hover) > ul.submenu {
+  display: none;
+}
+
+/* Formatage des couleurs des liens hypertextes */
+a.hamb:link {
+  color: #729EBF;
+  text-decoration: none;
+}
+
+a.hamb:visited {
+  color: #729EBF;
+  text-decoration: none;
+}
+
+a.hamb:hover {
+  color: #729EBF;
+  text-decoration: none;
+}
+
+a.hamb:active {
+  color: #729EBF;
+  text-decoration: none;
+}
+/* Fin  Menu déroulant Général type "Hamburger" Général */
+/*===============================================================================*/
+/* Début du Menu déroulant User */
+
+.menu-container_user {
+    position: fixed;
+    top: 0;
+    right: 70px;
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    max-height: 500px;
+    position: absolute;
+}
+
+.image-trigger {
+    position: absolute;
+    top: 20px; /* Ajustez la valeur selon votre mise en page */
+    right: 55px; /* Ajustez la valeur selon votre mise en page */
+    margin-top: 0; /* Ajustez la valeur selon votre mise en page */
+}
+
+/*
+.mon-compte {
+    position: absolute;
+    top: 55px;
+    right: 70px;
+    font-family: 'Inter', sans-serif;
+    color: rgb(122, 122, 122);
+    font-size: 16px;
+    white-space: nowrap;
+    margin: 0;
+}*/
+
+#menu-accordeon {
+    display: none;
+    position: absolute;
+    top: 65px; /* Ajustez la valeur selon votre mise en page */
+    right: 0;
+    z-index: 0; /* Assurez-vous que le menu est en dessous de l'image */
+    max-height: 0; /* Masquez le menu par défaut */
+    overflow: hidden; /* Cache le débordement pour les éléments enfants qui dépassent */
+    }
+
+.image-trigger:hover + #menu-accordeon,
+#menu-accordeon:hover {
+    display: block;
+    max-height: 500px; /* Ajustez la valeur selon votre mise en page et la hauteur maximale du menu */
+}
+
+.menu-title {
+
+    padding: 10px; /* Ajoutez de l'espace intérieur pour le titre */
+}
+
+.menu-title-text {
+    color: #fff; /* Couleur du texte du titre du menu */
+    margin: 0; /* Supprime la marge par défaut du paragraphe */
+    font-size: 16px; /* Ajustez la taille de la police selon vos préférences */
+}
+
+li.menu-title{
+	padding: 10px;
+	background-color: rgb(50, 50, 50); /* Couleur de fond du titre du menu */
+}
+
+/* Ajoutez une marge pour éviter que le menu ne chevauche le premier élément */
+#menu-accordeon li:first-child {
+    margin-top: 0; /* Ajustez la valeur selon votre mise en page */
+}
+
+/* Style de la barre de navigation principale */
+.nav_user {
+   list-style-type: none; /* Supprime les puces de liste */
+   border-radius: 10px; /* Coins arrondis */
+   background: #666; /* Fond de la barre de navigation */
+   margin: 0;
+   padding: 0;
+   width: 230px; /* Largeur fixe de la barre de navigation */
+   overflow: hidden; /* Cache le débordement pour les éléments enfants qui dépassent */
+}
+
+/* Style des éléments de la barre de navigation principale */
+.nav-item {
+   font-size: 14px; /* Taille de la police des éléments de la barre de navigation */
+   font-family: 'Inter', sans-serif;
+   background-color: rgb(102, 160, 204); /* Couleur de fond des éléments de la barre de navigation */
+   border-bottom: 1px solid rgb(34, 57, 74); /* Bordure inférieure avec une légère transparence */
+}
+
+/* Style pour l'élément avec la classe "nav-link" */
+a.nav-link {
+    color: rgb(255, 255, 255); /* Couleur du texte (par exemple, bleu) */
+    text-decoration: none; /* Supprimer le soulignement par défaut */
+    transition: color 0.3s ease; /* Ajouter une transition pour une animation fluide */
+}
+
+/* Changement de couleur du texte au survol */
+.nav-link:hover {
+    background: rgb(255, 128, 64); /* Fond des sous-menus */
+}
+
+/* Supprime la bordure inférieure pour le dernier élément de la barre de navigation principale */
+.nav-item:last-child {
+   border-bottom: none;
+   max-height: 2rem;
+}
+
+/* Style des liens de la barre de navigation principale et des sous-menus */
+.nav-link, .nav-submenu-link {
+    text-decoration: none;
+    padding: 16px 20px;
+    display: block;
+}
+
+/* Ajoutez la règle spécifique pour l'élément que vous ne souhaitez pas avoir le curseur de la main */
+.nav-item.no-cursor a {
+    cursor: default;
+}
+
+/* Style des sous-menus */
+.nav-submenu {
+   overflow: hidden; /* Cache le débordement pour les éléments enfants qui dépassent */
+   max-height: 0; /* Cache les sous-menus par défaut */
+   transition: max-height 0.5s; /* Transition de l'animation pour afficher/cacher les sous-menus */
+   background: rgb(34, 57, 74); /* Fond des sous-menus */
+}
+
+/* Applique une hauteur maximale aux sous-menus lorsqu'ils sont ciblés (via l'ancre d'URL) */
+.nav-submenu:target {
+   max-height: 10rem;
+}
+
+a.nav-submenu-link {
+	    color: rgb(255, 255, 255); /* Nouvelle couleur du lien du sous-menu */
+}
+
+/* Style des liens des sous-menus */
+.nav-submenu-link {
+   font-size: 13px; /* Taille de la police des liens des sous-menus */
+   background: transparent; /* Fond transparent par défaut */
+   transition: background 0.5s ease-in; /* Transition de couleur de fond avec un effet en douceur */
+}
+
+/* Changement de couleur de fond lors du survol des liens des sous-menus */
+a.nav-submenu-link:hover {
+   /*background: rgb(221, 198, 181); /* Fond des sous-menus */
+   color: rgb(0, 128, 128); /* Couleur du lien au survol */
+}
+
+.nav-item.has-submenu.open .nav-link {
+    background: rgb(255, 128, 64); /* Couleur orange pour le lien parent lorsqu'un sous-menu est ouvert */
+}
+
+/* Fin Menu déroulant Utilisateur */
+/*===============================================================================*/
+
+/*===============================================================================*/
+/* Panier */
+
+.image-container_panier {
+	position: absolute;
+	top: 15px;
+	right: 45px;
+	cursor: pointer;
+}
+
+.image-container_panier::before {
+	content: 'Votre panier est vide';
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: #333;
+	color: #fff;
+	padding: 5px;
+	border-radius: 5px;
+	opacity: 0;
+	transition: opacity 0.3s ease-in-out;
+	width: auto;
+	/* Ajustement automatique de la largeur en fonction du texte */
+	white-space: nowrap;
+	/* Empêche le texte de se retourner à la ligne */
+}
+
+.image-container_panier:hover::before {
+	opacity: 1;
+}

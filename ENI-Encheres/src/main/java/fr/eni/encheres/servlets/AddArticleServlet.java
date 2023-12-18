@@ -1,16 +1,9 @@
 package fr.eni.encheres.servlets;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Connection;
 import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.sql.Time;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -18,8 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
-
 import fr.eni.encheres.DateTimeConverter;
 import fr.eni.encheres.bll.ArticleManager;
 import fr.eni.encheres.bll.CategorieManager;
@@ -48,18 +39,8 @@ public class AddArticleServlet extends HttpServlet
 		int prixInit = Integer.valueOf(request.getParameter("prixInit"));
 		int prixVente = 0;
 		String adresseRetrait = request.getParameter("adresseRetrait");
-		Part imagePart = request.getPart("imageFile");
 
 		// Récupérez les données binaires de l'image
-		if (imagePart != null) {
-			try {
-				InputStream imageInputStream = imagePart.getInputStream();
-				byte[] imageData = imageInputStream.readAllBytes();
-
-				System.out.println("Données binaires de l'image récupérées avec succès.");
-
-				// ... votre code pour stocker les données binaires dans l'emplacement souhaité
-				// (0x) ...
 
 				try {
 					// Ajoutez des impressions pour vérifier les valeurs
@@ -114,16 +95,5 @@ public class AddArticleServlet extends HttpServlet
 					System.out.println("Erreur de conversion de date.");
 					response.sendRedirect("error.jsp");
 				}
-			} catch (IOException e) {
-				e.printStackTrace();
-				System.out.println("Erreur lors de la récupération des données binaires de l'image.");
-				response.sendRedirect("error.jsp");
-			}
-		} else {
-			// Gérer le cas où l'image n'a pas été fournie
-			System.out.println("L'image n'a pas été fournie.");
-			response.sendRedirect("error.jsp");
-		}
+			} 
 	}
-
-}

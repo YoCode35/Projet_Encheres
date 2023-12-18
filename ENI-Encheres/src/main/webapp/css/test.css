@@ -1,0 +1,130 @@
+/* Applique une hauteur de 100% au body et à html */
+body, html {
+   height: 100%;
+}
+
+/* Style de base pour le corps de la page */
+body {
+   background: #222; /* Fond sombre */
+   display: flex; /* Utilisation de Flexbox pour le positionnement */
+   justify-content: center; /* Centrage horizontal des éléments fils */
+   flex-direction: column; /* Alignement vertical des éléments fils */
+   align-items: center; /* Centrage vertical des éléments fils */
+}
+
+.menu-container_user {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    max-height: 1000px;
+    position: absolute;
+}
+
+.image-trigger {
+    position: absolute;
+    top: 10px; /* Ajustez la valeur selon votre mise en page */
+    right: 10px; /* Ajustez la valeur selon votre mise en page */
+    z-index: 1; /* Assurez-vous que l'image est au-dessus du menu */
+    margin-top: 0; /* Ajustez la valeur selon votre mise en page */
+    transition: margin-top 0.3s ease; /* Ajoutez une transition pour une animation fluide */
+}
+
+#menu-accordeon {
+    display: none;
+    position: absolute;
+    top: 85px; /* Ajustez la valeur selon votre mise en page */
+    right: 0;
+    z-index: 0; /* Assurez-vous que le menu est en dessous de l'image */
+    transition: max-height 0.5s; /* Ajoutez une transition pour l'ouverture/fermeture du menu */
+    max-height: 0; /* Masquez le menu par défaut */
+    overflow: hidden; /* Cache le débordement pour les éléments enfants qui dépassent */
+}
+
+.image-trigger:hover + #menu-accordeon,
+#menu-accordeon:hover {
+    display: block;
+    max-height: 500px; /* Ajustez la valeur selon votre mise en page et la hauteur maximale du menu */
+}
+
+.image-trigger:hover {
+    margin-top: 5px; /* Ajustez la valeur selon votre mise en page */
+}
+
+/* Ajoutez une marge pour éviter que le menu ne chevauche le premier élément */
+#menu-accordeon li:first-child {
+    margin-top: 0; /* Ajustez la valeur selon votre mise en page */
+}
+
+/* Style de la barre de navigation principale */
+.nav {
+   list-style-type: none; /* Supprime les puces de liste */
+   border-radius: 10px; /* Coins arrondis */
+   background: #666; /* Fond de la barre de navigation */
+   margin: 0;
+   padding: 0;
+   width: 300px; /* Largeur fixe de la barre de navigation */
+   overflow: hidden; /* Cache le débordement pour les éléments enfants qui dépassent */
+}
+
+/* Style des éléments de la barre de navigation principale */
+.nav-item {
+   font-size: 20px; /* Taille de la police des éléments de la barre de navigation */
+   background-color: rgba(114, 158, 191, 0.8); /* Couleur de fond des éléments de la barre de navigation */
+   border-bottom: 1px solid rgb(34, 57, 74); /* Bordure inférieure avec une légère transparence */
+}
+
+/* Supprime la bordure inférieure pour le dernier élément de la barre de navigation principale */
+.nav-item:last-child {
+   border-bottom: none;
+   max-height: 2rem;
+}
+
+/* Style des liens de la barre de navigation principale et des sous-menus */
+.nav-link, .nav-submenu-link {
+    text-decoration: none;
+    padding: 16px 20px;
+    display: block;
+    cursor: pointer; /* Ajoutez cette ligne pour définir le curseur par défaut */
+    color: rgb(255, 255, 255);
+}
+
+/* Ajoutez la règle spécifique pour l'élément que vous ne souhaitez pas avoir le curseur de la main */
+.nav-item.no-cursor a {
+    cursor: default;
+}
+
+/* Style des sous-menus */
+.nav-submenu {
+   overflow: hidden; /* Cache le débordement pour les éléments enfants qui dépassent */
+   max-height: 0; /* Cache les sous-menus par défaut */
+   transition: max-height 0.5s; /* Transition de l'animation pour afficher/cacher les sous-menus */
+   background: rgb(34, 57, 74); /* Fond des sous-menus */
+}
+
+/* Applique une hauteur maximale aux sous-menus lorsqu'ils sont ciblés (via l'ancre d'URL) */
+.nav-submenu:target {
+   max-height: 10rem;
+}
+
+.nav-submenu-link {
+    font-size: 16px;
+    background: transparent;
+    transition: background 0.5s ease-in;
+    color: rgb(255, 255, 0); /* Couleur du texte des liens des sous-menus (par exemple, vert vif) */
+}
+
+/* Changement de couleur du texte lors du survol des liens des sous-menus */
+.nav-submenu-link:hover {
+    background: rgb(221, 198, 181);
+    color: rgb(128, 64, 0); /* Couleur du texte au survol (par exemple, rouge vif) */
+}
+
+.nav-link.close {
+    text-align: right;
+    line-height: 0.1; /* Ajustez cette valeur en fonction de vos besoins */
+}

@@ -125,14 +125,14 @@
 		          découvrir des trésors uniques et participer à des enchères passionnantes. La première étape pour plonger 
 		          dans cet univers excitant est de créer votre compte personnel.</p>
 		          
-		          <p>
+
 		         	 <div style="font-size: 20px; color: red;">
 			          	Erreur : 
 			          	<% if (request.getAttribute("errorMessageEmailPseudo") != null) { %>
 		           			<%= request.getAttribute("errorMessageEmailPseudo") %>
 						<% } %>
 					</div>
-		          </p>
+
 		            <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 		            
 					<div class="sm:col-span-4">

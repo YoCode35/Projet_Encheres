@@ -1,4 +1,4 @@
-<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.text.SimpleDateFormat" %>
@@ -11,9 +11,8 @@
 
 	<head>
 	
-	    <meta charset="UTF-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	    <link href="css/form_add-item.css" rel="stylesheet" />
+	    <link href="css/form_add_new_item.css" rel="stylesheet" />
 	    <link href="css/success_messages.css" rel="stylesheet" />
 	    
 	    <title>Ajouter un nouvel article</title>

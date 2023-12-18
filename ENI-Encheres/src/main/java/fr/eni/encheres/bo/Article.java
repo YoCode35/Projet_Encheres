@@ -2,8 +2,6 @@ package fr.eni.encheres.bo;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 public class Article {
 	private int idArticle;

@@ -109,6 +109,8 @@
 		</script>
 		
 	</head>
+	
+	<%@ include file="includes/header.jsp" %>
 
 	<body>
 	

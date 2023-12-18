@@ -48,7 +48,7 @@ public class ServletAddUsers extends HttpServlet
         //Gestion email et pseudo déjà existant
         if (!emailIsUnique || !pseudoIsUnique) {
 	        if (!emailIsUnique && !pseudoIsUnique){
-	        	request.setAttribute("errorMessageEmailPseudo", "L'adresse e-mail et le Pseudo existent déjà, veillez en choisir d'autres.");
+	        	request.setAttribute("errorMessageEmailPseudo", "L'adresse e-mail et le Pseudo existent déjà, veuillez en choisir d'autres.");
 	        }
 	        else if (!emailIsUnique){
 	        	request.setAttribute("errorMessageEmailPseudo", "L'adresse e-mail existe déjà, veuillez en choisir une autre.");
