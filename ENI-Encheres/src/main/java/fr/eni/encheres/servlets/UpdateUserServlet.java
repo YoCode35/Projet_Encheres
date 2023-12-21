@@ -15,7 +15,8 @@ import fr.eni.encheres.bo.Utilisateur;
  * Servlet implementation class ServletUpdateUser
  */
 @WebServlet("/UpdateUserServlet")
-public class UpdateUserServlet extends HttpServlet {
+public class UpdateUserServlet extends HttpServlet 
+{
 	private static final long serialVersionUID = 1L;
 
 	/**

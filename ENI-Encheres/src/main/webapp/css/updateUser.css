@@ -1,0 +1,84 @@
+@charset "UTF-8";
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+form.update-profil {
+    max-width: 50%;
+    width: 100%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 12px;
+    box-sizing: border-box;
+}
+
+.valider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+  background-color: #3498db; 
+  font-size: 18px;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s; /* Animation de transition pour le survol */
+}
+
+.valider input {
+  border: none; /* Masque la bordure du bouton par défaut */
+  background: none; /* Masque l'arrière-plan du bouton par défaut */
+  font-family: "Helvetica", sans-serif;
+  color: #fff; /* Couleur du texte en blanc */
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.valider:hover {
+  background-color: #7bb5dc; /* Fond orange plus clair au survol */
+}
+
+.retour button {
+  text-decoration: none;
+  background-color: #008000; /* Vert */
+  color: #fff; /* Texte en blanc */
+  font-family: "Helvetica", sans-serif;
+  font-size: 16px;
+  padding: 10px 30px;
+  border: 1px solid #008000; /* Vert */
+  border-radius: 5px;
+  cursor: pointer;
+  width: 170px;
+  text-align: center;
+  transition: color 0.3s, border-color 0.3s, font-weight 0.3s;
+  float: right;
+  margin-left: 20px;
+}
+
+.retour button:hover {
+  color: #008000; /* Texte en vert au survol */
+  background-color: #fff; /* Fond blanc au survol */
+}

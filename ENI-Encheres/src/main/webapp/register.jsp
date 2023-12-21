@@ -110,11 +110,12 @@
 		
 	</head>
 	
-	<%@ include file="includes/header.jsp" %>
-
 	<body>
 	
+		<%@ include file="includes/header.jsp" %>
+	
 		<main>
+		
 		  <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
 		  
 		    <form action="ServletAddUsers" method="post" accept-charset="UTF-8">

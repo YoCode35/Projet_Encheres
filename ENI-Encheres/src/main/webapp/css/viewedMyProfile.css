@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+.profile-information {
+  margin: 20px auto; /* Utilisation de 'auto' pour centrer horizontalement */
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  width: 600px;
+  min-height: 550px;
+}
+
+.user-details {
+  margin-bottom: 20px;
+  font-family: "Helvetica", sans-serif;
+}
+
+.user-details .title-vwdMyProfile {
+    font-weight: bold;
+}
+
+.edit-account {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px; /* Augmentez la marge pour plus d'espace */
+  background-color: #ff8c00; /* Fond orange */
+  color: #fff; /* Texte blanc */
+  padding: 10px 20px; /* Ajustez la valeur du padding pour augmenter la hauteur */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s; /* Animation de transition pour le survol */
+}
+
+.edit-account button {
+  border: none; /* Masque la bordure du bouton par défaut */
+  background: none; /* Masque l'arrière-plan du bouton par défaut */
+  font-family: "Helvetica", sans-serif;
+  color: #fff; /* Couleur du texte en blanc */
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.edit-account:hover {
+  background-color: #ffa54f; /* Fond orange plus clair au survol */
+}
+
+.delete-account {
+  text-decoration: none;
+  background-color: #fff;
+  color: #ccc;
+  font-family: "Helvetica", sans-serif;
+  font-size: 16px;
+  padding: 10px 30px;
+  border: 1px solid #800000; /* Bordeaux */
+  border-radius: 5px;
+  cursor: pointer;
+  width: 170px;
+  text-align: center;
+  transition: color 0.3s, border-color 0.3s, font-weight 0.3s; /* Ajout de transitions */
+  float: right; /* Float the delete account link to the right */
+  margin-left: 20px; /* Add spacing between the two buttons */
+}
+
+.delete-account:hover {
+  color: #f00;
+  border-color: #f00;
+}

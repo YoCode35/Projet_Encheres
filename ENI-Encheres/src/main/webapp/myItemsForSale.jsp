@@ -8,20 +8,18 @@
 <html lang="fr">
 
 	<head>
-	    <meta charset="UTF-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	    <link href="css/myItemsForSale.css" rel="stylesheet" />
 	    <title>Mes articles à vendre</title>
 	</head>
 
-	<!-- Header -->
-	<%@ include file="includes/header.jsp" %>
+	<body>	
 
-	<body>
+		<!-- Header -->
+		<%@ include file="includes/header.jsp" %>
 
         <main>
         
-	        <h2 class="table-title">Mes articles à vendre</h2>
+	        <h2>Mes articles à vendre</h2>
 	
 	        <%-- Vérifier si la liste d'articles n'est pas null avant de l'afficher --%>
 	        <c:if test="${not empty mesArticles}">
@@ -79,5 +77,7 @@
     	%>
 
 	</body>
-	
+
+	<%@ include file="WEB-INF/includes/footer.jsp"%>
+
 </html>

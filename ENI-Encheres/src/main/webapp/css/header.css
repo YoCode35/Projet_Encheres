@@ -5,7 +5,6 @@
 
 html {
   border: 20px solid #fff; /* Bordure blanche tout autour */
-  color: rgb(255, 255, 255);
 }
 
 header {
@@ -20,7 +19,6 @@ nav {
 	max-width: 100%;
 	margin: 0 auto;
 	text-align: center;
-	color: rgb(255, 255, 255);
 }
 
 .userConnect {
@@ -40,47 +38,47 @@ nav {
 /*===============================================================================*/
 /*===============================================================================*/
 /* Début Container pour le formulaire de connexion et le lien d'inscription */
-.container_connect {
+.container-connect {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   height: 30px;
-  margin-top: 10px; /* Ajoute une marge de 10px en haut */
+  margin-top: 10px;
 }
 
 
-form {
+form.connectdb {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
 /* Champ de saisie */
-    input {
+    .connectdb input {
 		color: rgb(64, 64, 64);
 		padding: 5px 10px;
 		border: 2px solid rgb(225, 241, 255);
 		border-radius: 5px;
 		font-size: 16px;		
-		box-sizing: border-box;
+		box-sizing: border-box;		
 		margin-right: 15px; /* Ajoute de l'espace en bas de chaque champ de saisie */
     }
     
-    input[type="email"] {
+    .connectdb input[type="email"] {
     	color: rgb(64, 64, 64);
   		font-size: 13px;
   		font-family: 'Inter', sans-serif;
   		width: 300px;
 	}
     
-    input[type="password"] {
+    .connectdb input[type="password"] {
     	color: rgb(64, 64, 64);
   		font-size: 13px;
   		font-family: 'Inter', sans-serif;
   		width: 200px;
 	}
 
-    input:focus {
+    .connectdb input:focus {
 		color: rgb(64, 64, 64);
 		outline: none;
 		border-color: rgb(170, 227, 255); /* Couleur de la bordure au focus */
@@ -91,12 +89,7 @@ form {
     }
 /* */
 
-button, a.btn_connect {
-	color: #fff;
-  	margin: 5px;
-}
-
-button {
+.connectdb button {
   padding: 7px 20px;
   border: none;
   border-radius: 25px;
@@ -109,14 +102,43 @@ button {
   margin-left: 10px;
 }
 
-button:hover {
+.connectdb button:hover {
   background-color: #333; /* Change la couleur de fond au survol */
   border-color: #333; /* Change la couleur de la bordure au survol */
   color: #fff; /* Change la couleur du texte au survol */
 }
 
+.connectdb button, a.btn_register {
+	color: #fff;
+  	margin: 5px;
+}
+
+/* Début du Style du label "Se souvenir de moi" */
+.container-connect label {
+  display: inline-block; /* Permet d'ajuster la verticalité et l'espacement */
+  vertical-align: middle; /* Alignement vertical */
+  margin: 10px 5px; /* Espacement en bas */
+  color: #000;
+  font-size: 12px; /* Vous pouvez ajuster la taille selon vos besoins */
+  line-height: 24px; /* Ajustez cette valeur pour un meilleur alignement vertical */
+}
+
+#rememberMe {
+  margin-right: 20px;
+  vertical-align: middle; /* Alignement vertical avec le texte */
+}
+
+.forget-mdp {
+  font-size: 12px;
+  color: #000;
+  text-decoration: underline;
+  margin-right: 50px;
+}
+/* Fin du Style du label "Se souvenir de moi" */
+
+
 /* Style du lien d'inscription */
-.btn_connect {
+.btn-register{
   display: inline-block;
   padding: 7px 20px;
   border-radius: 25px; /* Ajustez le rayon pour obtenir une forme ovoïde */
@@ -128,7 +150,7 @@ button:hover {
   font-weight: 400;
 }
 
-.btn_connect:hover {
+.btn-register:hover {
   background-color: #333; /* Change la couleur de fond au survol */
   border-color: #333; /* Change la couleur de la bordure au survol */
   color: #fff; /* Change la couleur du texte au survol */

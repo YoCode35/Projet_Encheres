@@ -13,6 +13,8 @@
 	</head>
 	
 	<body>
+	
+		<%@ include file="includes/header.jsp" %>
 	  
 		<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
 		  
@@ -77,7 +79,12 @@
 			</div>
 		</div>
 	</form>
-</div></div>
-	</body>
 	
+</div>
+</div>
+
+	</body>
+
+	<%@ include file="WEB-INF/includes/footer.jsp"%>
+
 </html>

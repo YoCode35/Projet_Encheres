@@ -12,36 +12,34 @@
 	<head>
 	
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	    <link href="css/form_add_new_item.css" rel="stylesheet" />
-	    <link href="css/success_messages.css" rel="stylesheet" />
-	    
 	    <title>Ajouter un nouvel article</title>
 	
 	    <script>
 	        document.addEventListener("DOMContentLoaded", function () {
-	            // Récupérer les champs du formulaire
-	            var nomArticleInput = document.getElementById("nomArticle");
-	            var descInput = document.getElementById("desc");
-	            var categorieInput = document.getElementById("categorie");
-	            var dateDInput = document.getElementById("dateD");
-	            var heureDInput = document.getElementById("heureD");
-	            var dateFInput = document.getElementById("dateF");
-	            var heureFInput = document.getElementById("heureF");
-	            var prixInitInput = document.getElementById("prixInit");
+	        // Récupérer les champs du formulaire
+	        var nomArticleInput = document.getElementById("nomArticle");
+	        var descInput = document.getElementById("desc");
+	        var categorieInput = document.getElementById("categorie");
+	        var dateDInput = document.getElementById("dateD");
+	        var heureDInput = document.getElementById("heureD");
+	        var dateFInput = document.getElementById("dateF");
+	        var heureFInput = document.getElementById("heureF");
+	        var prixInitInput = document.getElementById("prixInit");
 	
-	            // Charger les données du localStorage si elles existent
-	            nomArticleInput.value = localStorage.getItem("nomArticle") || "";
-	            descInput.value = localStorage.getItem("desc") || "";
-	            categorieInput.value = localStorage.getItem("categorie") || "";
-	            dateDInput.value = localStorage.getItem("dateD") || "";
-	            heureDInput.value = localStorage.getItem("heureD") || "";
-	            dateFInput.value = localStorage.getItem("dateF") || "";
-	            heureFInput.value = localStorage.getItem("heureF") || "";
-	            prixInitInput.value = localStorage.getItem("prixInit") || "";
+	        // Charger les données du localStorage si elles existent
+	        nomArticleInput.value = localStorage.getItem("nomArticle") || "";
+	        descInput.value = localStorage.getItem("desc") || "";
+	        categorieInput.value = localStorage.getItem("categorie") || "";
+	        dateDInput.value = localStorage.getItem("dateD") || "";
+	        heureDInput.value = localStorage.getItem("heureD") || "";
+	        dateFInput.value = localStorage.getItem("dateF") || "";
+	        heureFInput.value = localStorage.getItem("heureF") || "";
+	        prixInitInput.value = localStorage.getItem("prixInit") || "";
 	
-	            // Ajouter des écouteurs d'événements pour détecter les changements dans les champs
-	            nomArticleInput.addEventListener("input", function () {
-	                localStorage.setItem("nomArticle", nomArticleInput.value);
+	        // Ajouter des écouteurs d'événements pour détecter les changements dans les champs
+	        nomArticleInput.addEventListener("input", function () 
+			{
+		        localStorage.setItem("nomArticle", nomArticleInput.value);
 	            });
 	            descInput.addEventListener("input", function () {
 	                localStorage.setItem("desc", descInput.value);
@@ -67,7 +65,8 @@
 	        });
 	
 	        // Fonction pour formater l'heure dans le format "HH'h'mm"
-	        function formatHeure(heureStr) {
+	        function formatHeure(heureStr) 
+	        {
 	            var heureFormat = new Intl.DateTimeFormat('fr', { hour: 'numeric', minute: 'numeric', hour12: false });
 	            var [hours, minutes] = heureFormat.formatToParts(new Date('2023-01-01 ' + heureStr));
 	            return hours.value + 'h' + minutes.value;
@@ -75,13 +74,17 @@
 	    </script>
 	
 	</head>
-	
-	<!-- Header -->
-	<%@ include file="includes/header.jsp" %>
 		
 	<body>
 	
+		<!-- Header -->
+		<%@ include file="includes/header.jsp" %>
+		
+		<h2>Ajouter un nouvel article</h2>
+		
+	
 	    <%@ page session="true" %>
+	    
 	    <%
 	        // Récupérer le message de confirmation depuis la session
 	        String confirmationMessage = (String) session.getAttribute("confirmationMessage");
@@ -97,42 +100,40 @@
 	        session.removeAttribute("confirmationMessage");
 	    }
 	    %>
+		
+	    <form class="additem" action="AddArticleServlet" method="post" enctype="multipart/form-data">
 	
-	    <h2>Ajouter un nouvel article</h2>
+	        <label class="additem" for="nomArticle">Nom de l'article :</label>
+			<input class="inputitem custom-input" type="text" id="nomArticle" name="nomArticle" required><br>
 	
-	    <form action="AddArticleServlet" method="post" enctype="multipart/form-data">
-	
-	        <label for="nomArticle">Nom de l'article :</label>
-	        <input type="text" id="nomArticle" name="nomArticle" required><br>
-	
-	        <label for="desc">Description :</label>
+	        <label class="additem" for="desc">Description :</label>
 	        <textarea id="desc" name="desc" rows="4" cols="50" required></textarea><br>
 	
-	        <label for="categorie">Catégorie:</label>
+	        <label class="additem" for="categorie">Catégorie:</label>
 	       	<select id="categorie" name="categorie" required>
 	            <% List<String> categories = CategorieManager.getInstance().getValidCategories();
 	            for (String category : categories) { %>
 	            <option value="<%= category %>"><%= category %></option>
 	            <% } %>
-	        </select><br>
+	        </select>
 	
-	        <label for="imageFile">Image :</label>
-	        <input type="file" name="imageFile" id="imageFile"/>
+	        <!--<label class="additem" for="imageFile">Image :</label>
+	        <input class="inputitem" type="file" name="imageFile" id="imageFile"/>-->
 	
-	        <label for="dateD">Date de début de l'enchère :</label>
-	        <input type="date" id="dateD" name="dateD">
-	        <label for="heureD">Heure de début :</label>
-	        <input type="time" id="heureD" name="heureD"><br>
+	        <label class="additem" for="dateD">Date de début de l'enchère :</label>
+	        <input class="inputitem" type="date" id="dateD" name="dateD">
+	        <label class="additem" for="heureD">Heure de début :</label>
+	        <input class="inputitem" type="time" id="heureD" name="heureD"><br>
 	
-	        <label for="dateF">Date de fin de l'enchère :</label>
-	        <input type="date" id="dateF" name="dateF">
-	        <label for="heureF">Heure de fin:</label>
-	        <input type="time" id="heureF" name="heureF"><br>
+	        <label class="additem" for="dateF">Date de fin de l'enchère :</label>
+	        <input class="inputitem" type="date" id="dateF" name="dateF">
+	        <label class="additem" for="heureF">Heure de fin:</label>
+	        <input class="inputitem" type="time" id="heureF" name="heureF"><br>
 	
-	        <label for="prixInit">Prix initial :</label>
-	        <input type="number" id="prixInit" name="prixInit" required><br>
+	        <label class="additem" for="prixInit">Prix initial :</label>
+	        <input class="inputitem" type="number" id="prixInit" name="prixInit" required><br>
 	
-	        <label for="adresseRetrait">Adresse de retrait (<em>Par défaut, celle de votre profil</em>) :</label>
+	        <label class="additem" for="adresseRetrait">Adresse de retrait (<em>Par défaut, celle de votre profil</em>) :</label>
 	        <textarea name="adresseRetrait" id="adresseRetrait" rows="4" cols="50">
 	            <%= session.getAttribute("userCoordonnees") %>
 	        </textarea>
@@ -142,5 +143,7 @@
 	    </form>
 	
 	</body>
+
+	<%@ include file="WEB-INF/includes/footer.jsp"%>
 
 </html>

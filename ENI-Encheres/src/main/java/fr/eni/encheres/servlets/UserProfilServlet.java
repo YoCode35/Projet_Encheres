@@ -11,15 +11,15 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class UserProfilServlet
  */
 @WebServlet("/UserProfilServlet")
-public class UserProfilServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
+public class UserProfilServlet extends HttpServlet 
+{
+	private static final long serialVersionUID = 1L;       
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("updateUser.jsp");
+		response.sendRedirect("userProfil.jsp");
 	}
 
 	/**

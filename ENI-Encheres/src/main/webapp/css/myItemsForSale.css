@@ -1,18 +1,8 @@
-h2 {
-  font-family: 'Inter', sans-serif;
-  font-size: 24px;
-  font-weight: 400;
-  text-decoration: none;
-  text-align: center;
-  margin-bottom: 20px;
-  margin-top: 100px;
-}
-
 /* Style pour le tableau */
 .styled-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 100px; /* Espace au-dessus du tableau */
+  margin-top: 50px; /* Espace au-dessus du tableau */
 }
 
 /* Style pour les en-têtes de colonnes */
