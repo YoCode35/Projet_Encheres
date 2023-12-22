@@ -5,16 +5,13 @@
 <html lang="fr">
 	
 	<head>
-	    <meta charset="UTF-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">	    		
 	    <title>Plateforme d'enchères d'objets de seconde main - ENI Enchères</title>
-	</head>
-	
-	<!-- Header -->
-
+	</head>	
 	
 	<body>
 	
+		<!-- Header -->
 		<%@ include file="includes/header.jsp" %>
 		
 		<h2>Mon Profil</h2>
@@ -66,7 +63,7 @@
 			</div>
 			
 			<!-- "UPDATE" Renvoie à la Servlet pour faire l'UPDATE -->
-	        <a class="edit-account" href="<%=request.getContextPath()%>/updateUser.jsp"><button type="button">Modifier mon Compte</button></a>
+	        <a class="edit-account" href="<%=request.getContextPath()%>/updateUser.jsp">Modifier mon Compte</a>
 			
 			<!-- Supprime le profil Utilisateur de la base de donnée -->
 			<a class="delete-account" href="<%=request.getContextPath()%>/userDeleteConfirmation.jsp">Supprimer mon compte</a>

@@ -1,4 +1,4 @@
-<%@ page language="java" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.text.SimpleDateFormat" %>
@@ -101,46 +101,52 @@
 	    }
 	    %>
 		
-	    <form class="additem" action="AddArticleServlet" method="post" enctype="multipart/form-data">
-	
-	        <label class="additem" for="nomArticle">Nom de l'article :</label>
-			<input class="inputitem custom-input" type="text" id="nomArticle" name="nomArticle" required><br>
-	
-	        <label class="additem" for="desc">Description :</label>
-	        <textarea id="desc" name="desc" rows="4" cols="50" required></textarea><br>
-	
-	        <label class="additem" for="categorie">Catégorie:</label>
-	       	<select id="categorie" name="categorie" required>
-	            <% List<String> categories = CategorieManager.getInstance().getValidCategories();
-	            for (String category : categories) { %>
-	            <option value="<%= category %>"><%= category %></option>
-	            <% } %>
-	        </select>
-	
-	        <!--<label class="additem" for="imageFile">Image :</label>
-	        <input class="inputitem" type="file" name="imageFile" id="imageFile"/>-->
-	
-	        <label class="additem" for="dateD">Date de début de l'enchère :</label>
-	        <input class="inputitem" type="date" id="dateD" name="dateD">
-	        <label class="additem" for="heureD">Heure de début :</label>
-	        <input class="inputitem" type="time" id="heureD" name="heureD"><br>
-	
-	        <label class="additem" for="dateF">Date de fin de l'enchère :</label>
-	        <input class="inputitem" type="date" id="dateF" name="dateF">
-	        <label class="additem" for="heureF">Heure de fin:</label>
-	        <input class="inputitem" type="time" id="heureF" name="heureF"><br>
-	
-	        <label class="additem" for="prixInit">Prix initial :</label>
-	        <input class="inputitem" type="number" id="prixInit" name="prixInit" required><br>
-	
-	        <label class="additem" for="adresseRetrait">Adresse de retrait (<em>Par défaut, celle de votre profil</em>) :</label>
-	        <textarea name="adresseRetrait" id="adresseRetrait" rows="4" cols="50">
-	            <%= session.getAttribute("userCoordonnees") %>
-	        </textarea>
-	
-	        <input type="submit" value="Ajouter l'article">
-	
-	    </form>
+	    <div class="form-container">
+	    
+		    <form class="additem" action="AddArticleServlet" method="post" enctype="multipart/form-data">
+		
+		        <label class="additem" for="nomArticle">Nom de l'article :</label>
+				<input class="inputitem custom-input" type="text" id="nomArticle" name="nomArticle" required><br>
+		
+		        <label class="additem" for="desc">Description :</label>
+		        <textarea id="desc" name="desc" rows="4" cols="50" required></textarea><br>
+		
+		        <label class="additem" for="categorie">Catégorie :</label>
+		       	<select id="categorie" name="categorie" required>
+		            <% 	List<String> categories = CategorieManager.getInstance().getValidCategories();
+		            	for (String category : categories) 
+		            	{ 
+		            %>
+		            		<option value="<%= category %>"><%= category %></option>
+		            <% 	} %>
+		        </select>
+		
+		        <!--<label class="additem" for="imageFile">Image :</label>
+		        <input class="inputitem" type="file" name="imageFile" id="imageFile"/>-->
+		
+		        <label class="additem" for="dateD">Date de début de l'enchère :</label>
+		        <input class="inputitem" type="date" id="dateD" name="dateD">
+		        <label class="additem" for="heureD">Heure de début :</label>
+		        <input class="inputitem" type="time" id="heureD" name="heureD"><br>
+		
+		        <label class="additem" for="dateF">Date de fin de l'enchère :</label>
+		        <input class="inputitem" type="date" id="dateF" name="dateF">
+		        <label class="additem" for="heureF">Heure de fin :</label>
+		        <input class="inputitem" type="time" id="heureF" name="heureF"><br>
+		
+		        <label class="additem" for="prixInit">Prix initial :</label>
+		        <input class="inputitem" type="number" id="prixInit" name="prixInit" required><br>
+		
+		        <label class="additem" for="adresseRetrait">Adresse de retrait (<em>Par défaut, celle de votre profil</em>) :</label>
+		        <textarea name="adresseRetrait" id="adresseRetrait" rows="4" cols="50">
+		            <%= session.getAttribute("userCoordonnees") %>
+		        </textarea>
+		
+		        <button type="submit" class="additem">Ajouter l'article</button>
+		
+		    </form>
+		    
+		</div>
 	
 	</body>
 

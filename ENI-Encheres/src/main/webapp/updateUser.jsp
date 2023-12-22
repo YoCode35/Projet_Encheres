@@ -5,7 +5,7 @@
 <html>
 
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">						
 		<title>Modification des informations de votre profil - ENI-Encheres</title>
 	</head>
 	    
@@ -30,42 +30,42 @@
 	
 		<h2>Modification de votre profil</h2>
 		
-		<div class="container">
+		<div class="form-container">
 		
 			<form class="update-profil" method="post" action="UpdateUserServlet">
 				
-				Pseudo : 
+				<label class="update-user" for="nomArticle">Pseudo :</label> 
 				<input type="text" name="pseudo" value="<%= session.getAttribute("userPseudo") %>">
 				
-				Nom 
+				<label class="update-user" for="nomArticle">Nom</label> 
 				<input type="text" name="nom" value="<%= session.getAttribute("userNom")%>">
 				
-				Prenom 
+				<label class="update-user" for="nomArticle">Prenom</label>
 				<input type="text" name="prenom" value="<%= session.getAttribute("userPrenom")%>">
 				
-				Email 
+				<label class="update-user" for="nomArticle">Email</label> 
 				<input type="email" name="email" value="<%= session.getAttribute("userEmail")%>">
 				
-				Telephone 
+				<label class="update-user" for="nomArticle">Telephone</label> 
 				<input type="text" name="telephone" value="<%= session.getAttribute("userTelephone")%>">
 				
-				Rue 
+				<label class="update-user" for="nomArticle">Rue</label> 
 				<input type="text" name="rue" value="<%= session.getAttribute("userRue")%>">
 				
-				Code Postal 
+				<label class="update-user" for="nomArticle">Code Postal</label> 
 				<input type="text" name="codePostal" value="<%= session.getAttribute("userCodePostal")%>">
 				
-				Ville 
+				<label class="update-user" for="nomArticle">Ville</label> 
 				<input type="text" name="ville" value="<%= session.getAttribute("userVille")%>">
 				
-				<label for="newPassword">Mot de passe :</label>
+				<label class="update-user" for="newPassword">Mot de passe :</label>
 		        <input type="password" id="newPassword" name="newPassword" placeholder="Vide, si vous ne mofifiez pas le mot de passe">
 				
-		        <label for="confirmerNewPassword">Confirmer le mot de passe :</label>
+		        <label class="update-user" for="confirmerNewPassword">Confirmer le mot de passe :</label>
 		        <input type="password" id="confirmerNewPassword" name="confirmerNewPassword" placeholder="Vide, si vous ne mofifiez pas le mot de passe">
 		        
 				<!-- Retour sur la page user avec les modifications -->
-				<input class="valider" type="submit" value="Valider">
+				<button class="confirm" type="submit">Confirmer la Modification</button>
 		
 				<!-- Retour sur la page user sans les modifications -->
 		  		<a class="retour" href="<%=request.getContextPath()%>/userProfil.jsp"><button type="button">Retour</button></a>

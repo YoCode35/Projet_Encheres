@@ -8,12 +8,12 @@
 
 	<head>
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 	    <title>Votre Plateforme d'enchères</title>
 	</head>
 	
 	<body>
 	
+		<!-- Header -->
 		<%@ include file="includes/header.jsp" %>
 	
 	    <div class="welcome_message yellow_background">

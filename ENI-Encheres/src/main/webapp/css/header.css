@@ -1,6 +1,5 @@
 @charset "UTF-8";
 @import 'normalize.css';
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 html {
@@ -27,7 +26,7 @@ nav {
 	font-family: 'Inter', sans-serif;
 	font-weight: 400;
 	text-align: left;
-	margin-left: 175px;
+	margin: 0 175px;
 }
 
 .credit {
@@ -43,7 +42,7 @@ nav {
   justify-content: flex-end;
   align-items: center;
   height: 30px;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 
@@ -69,6 +68,7 @@ form.connectdb {
   		font-size: 13px;
   		font-family: 'Inter', sans-serif;
   		width: 300px;
+  		margin-top: 12px;
 	}
     
     .connectdb input[type="password"] {
@@ -76,6 +76,7 @@ form.connectdb {
   		font-size: 13px;
   		font-family: 'Inter', sans-serif;
   		width: 200px;
+  		margin-top: 12px;
 	}
 
     .connectdb input:focus {

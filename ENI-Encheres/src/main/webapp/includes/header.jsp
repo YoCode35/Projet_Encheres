@@ -10,12 +10,11 @@
 		<link href="css/header.css" rel="stylesheet" />
 		<link href="css/nav.css" rel="stylesheet" />
 		<link href="css/index.css" rel="stylesheet" />
-		<link href="css/form_userProfil.css" rel="stylesheet" />
+		<link href="css/form_style.css" rel="stylesheet" />
+		<link href="css/encheres.css" rel="stylesheet" />
 		<link href="css/viewedMyProfile.css" rel="stylesheet" />
 		<link href="css/myItemsForSale.css" rel="stylesheet" />			    
-		<link href="css/form_add_new_item.css" rel="stylesheet" />
 	    <link href="css/success_messages.css" rel="stylesheet" />
-	    <link href="css/updateUser.css" rel="stylesheet" />
 	    <link href="css/footer.css" rel="stylesheet" />
 	</head>		    
 
@@ -41,10 +40,10 @@
 			    <input type="checkbox" id="menu-toggle">
 			    <label for="menu-toggle" class="menu-icon"><a class="hamb" href="AccueilServlet">&#9776;</a></label>		    
 			    <ul class="menu">
-			        <li><a href="#">Actualité & astuces</a></li>
-			        <li><a href="#">Aide / Contact</a></li>
-			        <li><a href="#">Newsletter</a></li>
-			        <li><a href="#">Conditions générales de vente</a></li>
+			        <li><a class="no-cursor" href="#">Actualité & astuces</a></li>
+			        <li><a class="no-cursor" href="#">Aide / Contact</a></li>
+			        <li><a class="no-cursor" href="#">Newsletter</a></li>
+			        <li><a class="no-cursor" href="#">Conditions générales de vente</a></li>
 			    </ul>
 			    
 			</div>			
