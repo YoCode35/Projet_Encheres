@@ -10,6 +10,7 @@
 		<link href="css/header.css" rel="stylesheet" />
 		<link href="css/nav.css" rel="stylesheet" />
 		<link href="css/index.css" rel="stylesheet" />
+		<link href="css/itemsIndex.css" rel="stylesheet" />
 		<link href="css/form_style.css" rel="stylesheet" />
 		<link href="css/encheres.css" rel="stylesheet" />
 		<link href="css/viewedMyProfile.css" rel="stylesheet" />

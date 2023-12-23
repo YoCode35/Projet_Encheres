@@ -30,48 +30,23 @@
 
 		        <%-- Vérifier si la liste d'articles n'est pas null avant de l'afficher --%>
 				<c:if test="${not empty tousArticles}">
-		
-			        	<table class="styled-table">
-			                
-			                <thead>
-			                    <!-- ... (en-têtes de colonnes) ... -->
-			                    <tr>
-		
-				                    <th>Nom Article</th>
-				                    <th>Description</th>
-				                    <th>Date de début</th>
-				                    <th>Heure de début</th>
-				                    <th>Date de fin</th>
-				                    <th>Heure de fin</th>
-				                    <th>Prix Initial</th>
-				                    <th>Adresse de retrait</th>
-			                	</tr>
-			            	</thead>
-		
-							<tbody>
-								<c:forEach var="article" items="${tousArticles}">
-									<tr>
-		
-										<td>${article.nomArticle}</td>
-										<td>${article.desc}</td>
-										<td>${article.dateD}</td>
-										<td>${article.heureD}</td>
-										<td>${article.dateF}</td>
-										<td>${article.heureF}</td>
-										<td>${article.prixInit}</td>
-										<td>${article.adresseRetrait}</td>
-										
-									</tr>
-								</c:forEach>
-							</tbody>
-							
-						</table>
-		
+				    <div class="container">
+				        <c:forEach var="article" items="${tousArticles}">
+				            <div class="text-cell">
+				                <div class="article-info">
+					                <p><span class="title-detailItem">Type d'Article :</span> ${article.nomArticle}</p>
+					                <p><span class="title-detailItem">Description :</span> ${article.desc}</p>
+					                <p><span class="title-detailItem">Début de l'enchère :</span> ${article.dateD}</p>
+					                <p><span class="title-detailItem">Heure :</span> ${article.heureD}</p>
+					                <p><span class="title-detailItem">Fin de l'enchère :</span> ${article.dateF}</p>
+					                <p><span class="title-detailItem">Heure :</span> ${article.heureF}</p>
+					                <p><span class="title-detailItem">Prix Initial :</span> ${article.prixInit}</p>
+					                <p><span class="title-detailItem">Livraison (Adresse de retrait) :</span> ${article.adresseRetrait}</p>
+				                </div>
+				            </div>
+				        </c:forEach>
+				    </div>
 				</c:if>
-		
-		        <div class="image-container_items">
-		            <img src="img/Liste_Articles-fictifs_fd-transp.png" alt="Votre Image">
-		        </div>
 	        
 	        </main>
 	        
