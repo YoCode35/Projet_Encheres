@@ -2,58 +2,90 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="java.util.List" %>
 
-<!DOCTYPE html>
+<!doctype html>
 
 <html lang="fr">
 
 	<head>
-	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	    <title>Votre Plateforme d'enchères</title>
+		<link href="css/itemsIndex.css" rel="stylesheet" />
 	</head>
-	
+
+<style>
+         .slick-next:before {
+            background: url(img/arrow_right_light.png) !important;
+            background-size: contain !important;
+        }
+
+        .slick-prev:before {
+            background: url(img/arrow_left_light.png) !important;
+            background-size: contain !important;
+        }       
+</style>
+
+
 	<body>
-	
+
 		<!-- Header -->
 		<%@ include file="includes/header.jsp" %>
-	
-	    <div class="welcome_message yellow_background">
+		
+		<div class="welcome_message yellow_background">
 	    
 	        <div class="slogan">
 	            <p>Adjugé,</p>
 	            <p>Enchères</p>
 	            <p>vendu !</p>
 	        </div>
-	        
-        	<main>
+
         	
-        		<p class="title_encheres"><a class="consult_encheres" href="encheres.jsp">Consultez nos enchères en cours</a></p>
+        	<p class="title_encheres"><a class="consult_encheres" href="encheres.jsp">Consultez nos enchères en cours</a></p>		
+		
 
-		        <%-- Vérifier si la liste d'articles n'est pas null avant de l'afficher --%>
-				<c:if test="${not empty tousArticles}">
-				    <div class="container">
-				        <c:forEach var="article" items="${tousArticles}">
-				            <div class="text-cell">
-				                <div class="article-info">
-					                <p><span class="title-detailItem">Type d'Article :</span> ${article.nomArticle}</p>
-					                <p><span class="title-detailItem">Description :</span> ${article.desc}</p>
-					                <p><span class="title-detailItem">Début de l'enchère :</span> ${article.dateD}</p>
-					                <p><span class="title-detailItem">Heure :</span> ${article.heureD}</p>
-					                <p><span class="title-detailItem">Fin de l'enchère :</span> ${article.dateF}</p>
-					                <p><span class="title-detailItem">Heure :</span> ${article.heureF}</p>
-					                <p><span class="title-detailItem">Prix Initial :</span> ${article.prixInit}</p>
-					                <p><span class="title-detailItem">Livraison (Adresse de retrait) :</span> ${article.adresseRetrait}</p>
-				                </div>
-				            </div>
-				        </c:forEach>
-				    </div>
-				</c:if>
+
+	        <div class="slick-list">
 	        
-	        </main>
-	        
-	    </div>
-	
+	            <c:if test="${not empty tousArticles}">
+	            
+	                <c:forEach var="article" items="${tousArticles}">
+	                    
+	                    <div class="slider">
+	                    
+	                        <div class="article-info">
+	                        
+	                            <!-- Texte simple pour représenter l'image -->                            
+	                            <span>Image Placeholder</span>
+	                            
+	                            <h3><a href="#"><c:out value='${article.nomArticle}' /></a></h3>
+	                            <p class="indexItem"><span class="title-detailItem">Description :</span> ${article.desc}</p>
+	                            <p class="indexItem"><span class="title-detailItem">Début de l'enchère :</span> ${article.dateD}</p>
+	                            <p class="indexItem"><span class="title-detailItem">Heure :</span> ${article.heureD}</p>
+	                            <p class="indexItem"><span class="title-detailItem">Fin de l'enchère :</span> ${article.dateF}</p>
+	                            <p class="indexItem"><span class="title-detailItem">Heure :</span> ${article.heureF}</p>
+	                            <p class="indexItem"><span class="title-detailItem">Prix Initial :</span> ${article.prixInit}</p>
+	                            <p class="indexItem"><span class="title-detailItem">Livraison (Adresse de retrait) :</span> ${article.adresseRetrait}</p>
+	                            
+	                        </div>
+	                        
+	                        <p class="readmore"><a href="#">En savoir + &raquo;</a></p>
+	                        
+	                    </div><!-- post -->
+	                    
+	                </c:forEach>
+	                
+	            </c:if>
+	            
+	        </div><!-- @end .crsl-items -->
+
+		</div>
+		
+	    <script type="text/javascript">
+	        $('.slick-list').slick({
+	            infinite: true,
+	            slidesToShow: 3,
+	            slidesToScroll: 3,
+	            arrows: true,         //arrows both sides of slide
+	        });
+	    </script>
+    
 	</body>
-
-	<%@ include file="WEB-INF/includes/footer.jsp"%>
-
+	
 </html>

@@ -6,11 +6,15 @@
 
 	<head>		    
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+   	 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    	<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+   	 	<script type="text/javascript" src="js/slick.min.js"></script>
+    	<link rel="stylesheet" type="text/css" media="all" href="css/slick.css">
+    	<link rel="stylesheet" type="text/css" media="all" href="css/slick-theme.css">		
 		<link href="css/style.css" rel="stylesheet" />    
 		<link href="css/header.css" rel="stylesheet" />
 		<link href="css/nav.css" rel="stylesheet" />
 		<link href="css/index.css" rel="stylesheet" />
-		<link href="css/itemsIndex.css" rel="stylesheet" />
 		<link href="css/form_style.css" rel="stylesheet" />
 		<link href="css/encheres.css" rel="stylesheet" />
 		<link href="css/viewedMyProfile.css" rel="stylesheet" />
