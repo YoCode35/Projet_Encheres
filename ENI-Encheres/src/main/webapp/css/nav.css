@@ -114,6 +114,7 @@ a.hamb:active {
     height: 100px;
     max-height: 500px;
     position: absolute;
+    z-index: 1000;
 }
 
 .image-trigger {

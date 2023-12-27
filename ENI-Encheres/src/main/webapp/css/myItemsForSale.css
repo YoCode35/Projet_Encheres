@@ -1,38 +1,46 @@
-/* Style pour le tableau */
-.styled-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 50px; /* Espace au-dessus du tableau */
+.myItems-container {
+    display: flex; /* Utilisation de flexbox pour ajuster la hauteur automatiquement */
+    flex-wrap: wrap; /* Permet aux éléments de passer à la ligne lorsque la largeur est dépassée */
+    width: 100%; /* Ajustez la largeur selon vos préférences */
+    margin: 0 0 0 12px; /* Centrage horizontal */
+    overflow: hidden; /* Clearfix pour éviter le débordement */
 }
 
-/* Style pour les en-têtes de colonnes */
-.styled-table th {
-  background-color: #f2f2f2; /* Couleur de fond pour les en-têtes */
-  text-align: center;
-  padding: 12px;
-  font-weight: bold;
-  border: 1px solid #ddd;
-  color: rgb(59, 59, 59);
-  font-size: 13px;
-  font-family: 'Inter', sans-serif;
+
+.myItems-info {
+    border: 1px solid #000;
+    padding: 25px;
+    height: auto;
+    width: calc(33.33% - 20px);
+    margin-bottom: 20px;
+    margin-right: 20px; /* Ajout de la marge droite pour l'espacement */
+    box-sizing: border-box;
+    font-size: 10px;
+    text-align: left;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    box-sizing: border-box;
+    float: left; /* Ajout de float pour aligner les fiches côte à côte */
+    border-radius: 10px;
 }
 
-/* Style pour les cellules dans le corps du tableau */
-.styled-table td {
-  text-align: center;
-  padding: 8px;
-  border: 1px solid #ddd;
-  color: rgb(100, 100, 100);
-  font-size: 13px;
-  font-family: 'Inter', sans-serif;
+.myItems {
+	
+	background-color: white;
+    color: #408080;
+    padding: 10px; /* Ajoutez un espace intérieur si nécessaire */
+    text-decoration: none; /* Supprime le soulignement du lien */
+	margin: 20px 0;      
+	font-family: "Helvetica", sans-serif;
+	font-size: 16px;
+	border: 1px solid #408080;
+	border-radius: 5px;	
+	transition: color 0.3s, border-color 0.3s, font-weight 0.3s; /* Ajout de transitions */
 }
 
-/* Style pour les lignes impaires, changez les couleurs selon vos préférences */
-.styled-table tbody tr:nth-child(odd) {
-  background-color: #f9f9f9;
+.myItems a {
+	text-decoration: none;
+	color: #408080;
 }
 
-/* Style pour les lignes au survol */
-.styled-table tbody tr:hover {
-  background-color: #e5e5e5;
-}
+.myItems a:hover { text-decoration: underline; }

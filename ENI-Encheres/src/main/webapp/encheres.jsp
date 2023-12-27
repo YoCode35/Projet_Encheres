@@ -58,20 +58,23 @@
 	            
 	                <c:forEach var="article" items="${tousArticles}">
 	                    
-	                        <div class="article-info">
+	                        <div class="article-info-nosEncheres">
 	                        
 	                            <!-- Texte simple pour représenter l'image -->                            
 	                            <span>Image Placeholder</span>
 	                            
 	                            <h3><a href="#"><c:out value='${article.nomArticle}' /></a></h3>
+	                            
 	                            <p class="indexItem"><span class="title-detailItem">Description :</span> ${article.desc}</p>
+	                            
 				                <!-- Fieldset for Auction Information -->
-				                <fieldset class="auction-info">
+				                <fieldset class="auction-info-dates">
 									<legend>Informations d'enchère</legend>
-				                        <p class="indexItem"><span class="title-detailItem">Début de l'enchère :</span> ${article.dateD} à  ${article.heureD}</p>
-				                        <p class="indexItem"><span class="title-detailItem">Fin de l'enchère :</span> ${article.dateF} à ${article.heureF}</p>
-									</fieldset>
-	                            <p class="indexItem"><span class="title-detailItem">Prix Initial :</span> ${article.prixInit}</p>
+				                    <p class="indexItem"><span class="title-detailItem">Début de l'enchère :</span> ${article.dateD} à  ${article.heureD}</p>
+				                    <p class="indexItem"><span class="title-detailItem">Fin de l'enchère :</span> ${article.dateF} à ${article.heureF}</p>
+								</fieldset>
+									
+	                            <p class="indexItem"><span class="title-detailItem">Prix Initial :</span> ${article.prixInit} €</p>
 	                            <p class="indexItem"><span class="title-detailItem">Livraison (Adresse de retrait) :</span> ${article.adresseRetrait}</p>
 	                            
 	                            <p class="readmore"><a href="#">En savoir + &raquo;</a></p>

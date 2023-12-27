@@ -105,10 +105,10 @@
 	    
 		    <form class="additem" action="AddArticleServlet" method="post" enctype="multipart/form-data">
 		
-		        <label class="additem" for="nomArticle">Nom de l'article :</label>
+		        <label class="additem" for="nomArticle">Nom de l'article* :</label>
 				<input class="inputitem custom-input" type="text" id="nomArticle" name="nomArticle" required><br>
 		
-		        <label class="additem" for="desc">Description :</label>
+		        <label class="additem" for="desc">Description* :</label>
 		        <textarea id="desc" name="desc" rows="4" cols="50" required></textarea><br>
 		
 		        <label class="additem" for="categorie">Catégorie :</label>
@@ -134,10 +134,10 @@
 		        <label class="additem" for="heureF">Heure de fin :</label>
 		        <input class="inputitem" type="time" id="heureF" name="heureF"><br>
 		
-		        <label class="additem" for="prixInit">Prix initial :</label>
-		        <input class="inputitem" type="number" id="prixInit" name="prixInit" required><br>
+		        <label class="additem" for="prixInit">Prix initial (€)* :</label>
+		        <input class="inputitem" type="number" id="prixInit" name="prixInit" placeholder="&euro;" required><br>
 		
-		        <label class="additem" for="adresseRetrait">Adresse de retrait (<em>Par défaut, celle de votre profil</em>) :</label>
+		        <label class="additem" for="adresseRetrait">Adresse de retrait* (<em>Par défaut, celle de votre profil</em>) :</label>
 		        <textarea name="adresseRetrait" id="adresseRetrait" rows="4" cols="50">
 		            <%= session.getAttribute("userCoordonnees") %>
 		        </textarea>

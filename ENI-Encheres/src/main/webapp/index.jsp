@@ -45,25 +45,28 @@
 	                    
 	                    <div class="slick-slider">
 	                    
-	                        <div class="article-info-index">
+	                        <div class="items-info-index">
 	                        
 	                            <!-- Texte simple pour représenter l'image -->                            
 	                            <span>Image Placeholder</span>
 	                            
 	                            <h3><a href="#"><c:out value='${article.nomArticle}' /></a></h3>
+	                            
 	                            <p class="indexItem"><span class="title-detailItem">Description :</span> ${article.desc}</p>
-	                    <!-- Fieldset for Auction Information -->
-	                    <fieldset class="auction-info">
-	                        <legend>Informations d'enchère</legend>
-	                        <p class="indexItem"><span class="title-detailItem">Début de l'enchère :</span> ${article.dateD} à  ${article.heureD}</p>
-	                        <p class="indexItem"><span class="title-detailItem">Fin de l'enchère :</span> ${article.dateF} à ${article.heureF}</p>
-	                    </fieldset>
-	                            <p class="indexItem"><span class="title-detailItem">Prix Initial :</span> ${article.prixInit}</p>
+	                            
+			                    <!-- Fieldset for Auction Information -->
+			                    <fieldset class="auction-info-dates">
+			                        <legend>Informations d'enchère</legend>
+			                        <p class="indexItem"><span class="title-detailItem">Début de l'enchère :</span> ${article.dateD} à  ${article.heureD}</p>
+			                        <p class="indexItem"><span class="title-detailItem">Fin de l'enchère :</span> ${article.dateF} à ${article.heureF}</p>
+			                    </fieldset>
+	                    
+	                            <p class="indexItem"><span class="title-detailItem">Prix Initial :</span> ${article.prixInit} €</p>
 	                            <p class="indexItem"><span class="title-detailItem">Livraison (Adresse de retrait) :</span> ${article.adresseRetrait}</p>
 	                            
-	                        </div>
-	                        
-	                        <p class="readmore"><a href="#">En savoir + &raquo;</a></p>
+	                            <p class="readmore"><a href="#">En savoir + &raquo;</a></p>
+	                            
+	                        </div>	                        
 	                        
 	                    </div><!-- post -->
 	                    

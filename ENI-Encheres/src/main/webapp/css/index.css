@@ -1,18 +1,18 @@
 /* General styles */
 @import url('https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 /* Welcome container */
 .welcome_message {
   width: 100%;
   max-width: 100%;
-  /*height: 100em; /* Hauteur de 100% de la vue */
 }
 
 /* Section avec arrière-plan jaune */
 .yellow_background {
-  background: linear-gradient(to bottom, #fff7ee, #ffffff); /* Dégradé du jaune (#fdd835) vers le blanc (#ffffff) */
-  padding-top: 1px; /* Ajuster la valeur selon l'espace que doit occuper le header */
-  margin-top: 50px; /* Ajuster la valeur pour déplacer l'arrière-plan vers le bas */
+  background: linear-gradient(to bottom, #fff7ee, #ffffff);
+  padding-top: 1px;
+  margin-top: 50px;
 }
 
 /* Slogan container */
@@ -44,25 +44,25 @@
 }
 
 /* Main content container */
-p.title_encheres {
+.title_encheres {
   display: inline-block;
-  margin-top: -10px; /* Ajustez la valeur négative pour monter l'élément */
-  margin-left: 40px; /* Aligner à gauche */
+  margin-top: -10px;
+  margin-left: 40px;
   margin-bottom: 0;
   padding: 10px 40px;
-  border: 1px solid rgb(205, 205, 205); /* Couleur du contour noir */
-  border-radius: 25px; /* Ajustez le rayon pour obtenir une forme ovoïde */
-  background-color: rgba(255, 255, 255, 0.5); /* Fond transparent */
-  color: #000; /* Couleur du texte */
+  border: 1px solid rgb(205, 205, 205);
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #000;
   font-size: 15px;
   font-weight: 400;
-  font-family: 'Inter', sans-serif; /* Utilisez la police Inter ou ajustez selon vos préférences */
+  font-family: 'Inter', sans-serif;
 }
 
 .title_encheres a.consult_encheres:visited {
     color: rgb(0, 0, 0);
 }
-				
+
 /* Image container */
 .image-container_items {
   margin-top: 100px;
