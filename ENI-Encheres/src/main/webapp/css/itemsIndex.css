@@ -1,16 +1,10 @@
-.slick-list {
-    display: flex;
-    justify-content: center; /* Centrage horizontal */
-    align-items: center; /* Centrage vertical */
-}
-
-.article-info {
+.article-info-index {
     border: 1px solid #000;
-    padding: 10px;
-    height: 270px; /* Hauteur fixe pour les cellules, ajustez selon vos besoins */
-    width: 400px; /* Hauteur fixe pour les cellules, ajustez selon vos besoins */
+    padding: 25px;
+    height: 330px; /* Hauteur fixe pour les cellules, ajustez selon vos besoins */
+    width: 330px; /* Hauteur fixe pour les cellules, ajustez selon vos besoins */
     overflow: hidden; /* Pour gérer le débordement du contenu si nécessaire */
-    margin: 0; /* Pour supprimer tout espace autour du paragraphe */
+    margin-left: 20px; /* Pour supprimer tout espace autour du paragraphe */
 	font-size: 10px;
 	text-align: left;
 	font-family: 'Inter', sans-serif;
@@ -29,59 +23,10 @@
 
 p.indexItem {        
 	margin-bottom: 15px; /* Marge en bas pour un espacement visuel */
-	line-height: 1.2; /* Hauteur de ligne pour une meilleure lisibilité */
+	line-height: 1.4; /* Hauteur de ligne pour une meilleure lisibilité */
 	color: #3c4246; /* Couleur du texte */
 	font-size: 12px;
 	text-align: left;
 	font-family: 'Inter', sans-serif;
 	font-weight: 400;
 }
-
-/* Carrousel Controls */
-/*------ slider width ------*/
-        .slider {
-            width: 70%;
-            margin: 0 auto;
-            text-align: center; /* Centrer le contenu à l'intérieur du slider */
-            margin-top : 20px;
-    		/*border: 1px solid #ccc; /* Bordure pour visualiser le bloc */
-    		padding: 25px; /* Espacement interne du bloc */
-    		text-align: center; /* Centrage du contenu à l'intérieur du bloc */
-    		vertical-align: center;
-        }
-
-        /*------ slider image ------*/
-        .slider img {
-            width: 50%;
-            display: inline-block; /* Empêche les images de se comporter comme des blocs */
-        }
-
-        /*-------- height ----------*/
-        .slider .slick-slide {
-            height: auto !important;
-        }
-
-        /*---------- arrows ---------*/
-        .slick-next {
-            right: -18px !important;            
-        }
-
-        .slick-prev {
-            left: -18px !important;
-        }
-
-        .slick-arrow {
-            z-index: 2 !important;
-            width: 60px !important;
-            height: 60px !important;
-        }
-
-        .slick-arrow:before {
-            content: "" !important;
-            width: 100% !important;
-            height: 100% !important;
-            position: absolute;
-            top: 0;
-            left: 0;
-            opacity: 0.5 !important;
-        }

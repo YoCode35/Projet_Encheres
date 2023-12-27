@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="fr.eni.encheres.bll.CategorieManager" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="java.util.List" %>
 
 <!DOCTYPE html>
@@ -8,6 +9,7 @@
     
 	<head>
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    	    
 	    <title>Nos Enchères en cours</title>
 	</head>
 	
@@ -49,19 +51,39 @@
 		    </div>
 		    
 		<main>
-		
-			<!-- /ENI-Encheres/ENI-Encheres/build/classes/fr/eni/encheres/ihm/resources/ -->
-			<div class="image-container">
-			
-			    <img src="img/Article_001.png" alt="Image 1">
-			    <img src="img/Article_002.png" alt="Image 2">
-			    <img src="img/Article_003.png" alt="Image 3">
-			   	<img src="img/Article_004.png" alt="Image 4">
-			    <img src="img/Article_005.png" alt="Image 5">
-			    <img src="img/Article_006.png" alt="Image 6">
-			    
-			</div>
-			
+
+	        <div class="items-container">
+	        
+	            <c:if test="${not empty tousArticles}">
+	            
+	                <c:forEach var="article" items="${tousArticles}">
+	                    
+	                        <div class="article-info">
+	                        
+	                            <!-- Texte simple pour représenter l'image -->                            
+	                            <span>Image Placeholder</span>
+	                            
+	                            <h3><a href="#"><c:out value='${article.nomArticle}' /></a></h3>
+	                            <p class="indexItem"><span class="title-detailItem">Description :</span> ${article.desc}</p>
+				                <!-- Fieldset for Auction Information -->
+				                <fieldset class="auction-info">
+									<legend>Informations d'enchère</legend>
+				                        <p class="indexItem"><span class="title-detailItem">Début de l'enchère :</span> ${article.dateD} à  ${article.heureD}</p>
+				                        <p class="indexItem"><span class="title-detailItem">Fin de l'enchère :</span> ${article.dateF} à ${article.heureF}</p>
+									</fieldset>
+	                            <p class="indexItem"><span class="title-detailItem">Prix Initial :</span> ${article.prixInit}</p>
+	                            <p class="indexItem"><span class="title-detailItem">Livraison (Adresse de retrait) :</span> ${article.adresseRetrait}</p>
+	                            
+	                            <p class="readmore"><a href="#">En savoir + &raquo;</a></p>
+	                            
+	                        </div>
+	                    
+	                </c:forEach>
+	                
+	            </c:if>
+	            
+	        </div><!-- @end .items-container -->
+	        		
         </main>
             
 	</body>

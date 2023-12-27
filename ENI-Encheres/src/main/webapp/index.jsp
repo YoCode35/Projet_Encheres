@@ -7,21 +7,20 @@
 <html lang="fr">
 
 	<head>
-		<link href="css/itemsIndex.css" rel="stylesheet" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
 
-<style>
-         .slick-next:before {
-            background: url(img/arrow_right_light.png) !important;
-            background-size: contain !important;
-        }
-
-        .slick-prev:before {
-            background: url(img/arrow_left_light.png) !important;
-            background-size: contain !important;
-        }       
-</style>
-
+	<style>
+		.slick-next:before {
+			background: url(img/arrow_right_02.png) !important;
+			background-size: contain !important;
+		}
+	
+		.slick-prev:before {
+			background: url(img/arrow_left_02.png) !important;
+			background-size: contain !important;
+		}       
+	</style>
 
 	<body>
 
@@ -35,11 +34,8 @@
 	            <p>Enchères</p>
 	            <p>vendu !</p>
 	        </div>
-
         	
-        	<p class="title_encheres"><a class="consult_encheres" href="encheres.jsp">Consultez nos enchères en cours</a></p>		
-		
-
+        	<p class="title_encheres"><a class="consult_encheres" href="NosEncheresServlet">Consultez nos enchères en cours</a></p>
 
 	        <div class="slick-list">
 	        
@@ -47,19 +43,21 @@
 	            
 	                <c:forEach var="article" items="${tousArticles}">
 	                    
-	                    <div class="slider">
+	                    <div class="slick-slider">
 	                    
-	                        <div class="article-info">
+	                        <div class="article-info-index">
 	                        
 	                            <!-- Texte simple pour représenter l'image -->                            
 	                            <span>Image Placeholder</span>
 	                            
 	                            <h3><a href="#"><c:out value='${article.nomArticle}' /></a></h3>
 	                            <p class="indexItem"><span class="title-detailItem">Description :</span> ${article.desc}</p>
-	                            <p class="indexItem"><span class="title-detailItem">Début de l'enchère :</span> ${article.dateD}</p>
-	                            <p class="indexItem"><span class="title-detailItem">Heure :</span> ${article.heureD}</p>
-	                            <p class="indexItem"><span class="title-detailItem">Fin de l'enchère :</span> ${article.dateF}</p>
-	                            <p class="indexItem"><span class="title-detailItem">Heure :</span> ${article.heureF}</p>
+	                    <!-- Fieldset for Auction Information -->
+	                    <fieldset class="auction-info">
+	                        <legend>Informations d'enchère</legend>
+	                        <p class="indexItem"><span class="title-detailItem">Début de l'enchère :</span> ${article.dateD} à  ${article.heureD}</p>
+	                        <p class="indexItem"><span class="title-detailItem">Fin de l'enchère :</span> ${article.dateF} à ${article.heureF}</p>
+	                    </fieldset>
 	                            <p class="indexItem"><span class="title-detailItem">Prix Initial :</span> ${article.prixInit}</p>
 	                            <p class="indexItem"><span class="title-detailItem">Livraison (Adresse de retrait) :</span> ${article.adresseRetrait}</p>
 	                            
@@ -73,7 +71,7 @@
 	                
 	            </c:if>
 	            
-	        </div><!-- @end .crsl-items -->
+	        </div><!-- @end .slick-list -->
 
 		</div>
 		
@@ -81,8 +79,7 @@
 	        $('.slick-list').slick({
 	            infinite: true,
 	            slidesToShow: 3,
-	            slidesToScroll: 3,
-	            arrows: true,         //arrows both sides of slide
+	            slidesToScroll: 3,	            
 	        });
 	    </script>
     
