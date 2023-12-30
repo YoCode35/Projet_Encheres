@@ -47,6 +47,7 @@
 			    <input type="checkbox" id="menu-toggle">
 			    <label for="menu-toggle" class="menu-icon"><a class="hamb" href="AccueilServlet">&#9776;</a></label>		    
 			    <ul class="menu">
+			    	<li><a class="" href="NosEncheresServlet">Enchères en cours</a></li>
 			        <li><a class="no-cursor" href="#">Actualité & astuces</a></li>
 			        <li><a class="no-cursor" href="#">Aide / Contact</a></li>
 			        <li><a class="no-cursor" href="#">Newsletter</a></li>

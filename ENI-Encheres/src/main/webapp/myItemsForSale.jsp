@@ -17,7 +17,7 @@
 		<!-- Header -->
 		<%@ include file="includes/header.jsp" %>
         
-	        <h2>Mes articles à vendre</h2>
+	    <h2>- Mes articles à vendre -</h2>
 	        
 		<main>
 
@@ -55,47 +55,6 @@
 	            </c:if>
 	            
 	        </div><!-- @end .items-container -->
-	        		
-	
-	        <%-- Vérifier si la liste d'articles n'est pas null avant de l'afficher --%>
-	        <c:if test="${not empty mesArticles}">
-	        
-	            <table class="styled-table">
-	            
-	                <thead>
-	                    <!-- ... (en-têtes de colonnes) ... -->
-	                    <tr>
-		                    <th>ID Article</th>
-		                    <th>Nom Article</th>
-		                    <th>Description</th>
-		                    <th>Date de début</th>
-		                    <th>Heure de début</th>
-		                    <th>Date de fin</th>
-		                    <th>Heure de fin</th>
-		                    <th>Prix Initial</th>
-		                    <th>Adresse de retrait</th>
-	                	</tr>
-	            	</thead>
-	            
-	            	<tbody>
-	                	<c:forEach var="article" items="${mesArticles}">
-	                    	<tr>
-		                        <td>${article.idArticle}</td>
-		                        <td>${article.nomArticle}</td>
-		                        <td>${article.desc}</td>
-		                        <td>${article.dateD}</td>
-		                        <td>${article.heureD}</td>
-		                        <td>${article.dateF}</td>
-		                        <td>${article.heureF}</td>
-		                        <td>${article.prixInit}</td>
-		                        <td>${article.adresseRetrait}</td>
-	                    	</tr>
-	                	</c:forEach>
-	            	</tbody>
-	            
-	        	</table>
-	        
-	        </c:if>
 	        
 		</main>
 

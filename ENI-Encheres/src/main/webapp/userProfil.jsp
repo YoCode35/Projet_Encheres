@@ -14,7 +14,7 @@
 		<!-- Header -->
 		<%@ include file="includes/header.jsp" %>
 		
-		<h2>Mon Profil</h2>
+		<h2>- Mon Profil -</h2>
 		
 		<div class="profile-information">		
 		

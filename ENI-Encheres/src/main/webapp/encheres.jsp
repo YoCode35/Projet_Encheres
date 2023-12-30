@@ -26,7 +26,7 @@
 	        } 
 	    %>
 	    
-	        <h2>Nos enchères en cours</h2>
+	        <h2>- Nos enchères en cours -</h2>
 	        
 	        <div class="form-container">
 	        
@@ -58,12 +58,12 @@
 	            
 	                <c:forEach var="article" items="${tousArticles}">
 	                    
-	                        <div class="article-info-nosEncheres">
+	                        <div class="item-info-allAuctions">
 	                        
 	                            <!-- Texte simple pour représenter l'image -->                            
 	                            <span>Image Placeholder</span>
 	                            
-	                            <h3><a href="#"><c:out value='${article.nomArticle}' /></a></h3>
+	                            <h3 class="title-allItems"><a href="#"><c:out value='${article.nomArticle}' /></a></h3>
 	                            
 	                            <p class="indexItem"><span class="title-detailItem">Description :</span> ${article.desc}</p>
 	                            

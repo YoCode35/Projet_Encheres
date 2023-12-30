@@ -28,7 +28,7 @@
 		<!-- Header -->
 		<%@ include file="includes/header.jsp" %>
 	
-		<h2>Modification de votre profil</h2>
+		<h2>- Modification de votre profil -</h2>
 		
 		<div class="form-container">
 		

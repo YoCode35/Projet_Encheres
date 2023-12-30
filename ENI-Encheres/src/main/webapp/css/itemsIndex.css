@@ -12,6 +12,18 @@
 	border-radius: 10px;
 }
 
+.title-allItems {
+	
+	background-color: 3498db;
+    color: #fff;
+    padding: 10px; /* Ajoutez un espace intérieur si nécessaire */
+    text-decoration: none; /* Supprime le soulignement du lien */
+	margin: 20px 0;      
+	font-family: 'Inter', sans-serif;
+	font-size: 16px;
+	border-radius: 5px;	
+}
+
 .title-detailItem {
     text-decoration: underline; /* Soulignage */
     margin-right: 5px; /* Espacement entre le titre et la valeur */

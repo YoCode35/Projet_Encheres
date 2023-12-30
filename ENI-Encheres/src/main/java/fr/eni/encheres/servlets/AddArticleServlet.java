@@ -2,8 +2,15 @@ package fr.eni.encheres.servlets;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.sql.Time;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Locale;
+import java.util.TimeZone;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -11,89 +18,128 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import fr.eni.encheres.DateTimeConverter;
+
 import fr.eni.encheres.bll.ArticleManager;
 import fr.eni.encheres.bll.CategorieManager;
 import fr.eni.encheres.bo.Article;
 
 @MultipartConfig
 @WebServlet("/AddArticleServlet")
-public class AddArticleServlet extends HttpServlet 
-{
-	private static final long serialVersionUID = 1L;
+public class AddArticleServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// Récupérer 'userId' depuis la session
-		HttpSession session = request.getSession();
-		Integer userId = (Integer) session.getAttribute("userID");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+    {
+        // Récupérer 'userId' depuis la session
+        HttpSession session = request.getSession();
+        Integer userId = (Integer) session.getAttribute("userID");
 
-		// Récupérer les données du formulaire
-		String nomArticle = request.getParameter("nomArticle");
-		String desc = request.getParameter("desc");
-		String categorie = request.getParameter("categorie"); // Récupérer le libellé de la catégorie
-		String dateD = request.getParameter("dateD");
-		String heureD = request.getParameter("heureD");
-		String dateF = request.getParameter("dateF");
-		String heureF = request.getParameter("heureF");
-		int prixInit = Integer.valueOf(request.getParameter("prixInit"));
-		int prixVente = 0;
-		String adresseRetrait = request.getParameter("adresseRetrait");
+        // Récupérer les données du formulaire
+        String nomArticle = request.getParameter("nomArticle");
+        String desc = request.getParameter("desc");
+        String categorie = request.getParameter("categorie"); // Récupérer le libellé de la catégorie
+        String dateD = request.getParameter("dateD");
+        String heureD = request.getParameter("heureD");
+        String dateF = request.getParameter("dateF");
+        String heureF = request.getParameter("heureF");
+        int prixInit = Integer.valueOf(request.getParameter("prixInit"));
+        int prixVente = 0;
+        String adresseRetrait = request.getParameter("adresseRetrait");
 
-		// Récupérez les données binaires de l'image
+        // Utiliser un objet SimpleDateFormat pour le formatage des dates
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
 
-				try {
-					// Ajoutez des impressions pour vérifier les valeurs
-					System.out.println("nomArticle: " + nomArticle);
-					System.out.println("desc: " + desc);
-					System.out.println("categorie: " + categorie);
-					System.out.println("dateD: " + dateD);
-					System.out.println("heureD: " + heureD);
-					System.out.println("dateF: " + dateF);
-					System.out.println("heureF: " + heureF);
-					System.out.println("prixInit: " + prixInit);
-					System.out.println("adresseRetrait: " + adresseRetrait);
+        // Récupérez les données binaires de l'image
 
-					// Récupérer le no_categorie correspondant au libellé
-					int categorieId = CategorieManager.getInstance().getCategoryIdByLabel(categorie);
+        try {
 
-					// Ajoutez des logs pour vérifier les valeurs
-					System.out.println("categorie: " + categorie);
-					System.out.println("categorieId: " + categorieId);
+            // Convertir et formater la date de début
+            String outputDateD = DateTimeConverter.formatDate(dateD, inputFormat, outputFormat);
 
-					// Vérifier si la catégorie existe
-					if (categorieId == -1) {
-						// La catégorie n'existe pas, renvoyer un message d'erreur ou rediriger vers une
-						// page d'erreur
-						System.out.println("La catégorie n'existe pas.");
-						response.sendRedirect("error.jsp");
-						return;
-					}
+            // Convertir et formater l'heure de début sans les secondes
+            String outputHeureD = DateTimeConverter.formatHour(heureD);
 
-					// Conversion des chaînes en objets java.sql.Date et java.sql.Time
-					Date dateDebut = DateTimeConverter.convertStringToDate(dateD);
-					Time formattedHeureDebut = DateTimeConverter.convertStringToTime(heureD);
-					Date dateFin = DateTimeConverter.convertStringToDate(dateF);
-					Time formattedHeureFin = DateTimeConverter.convertStringToTime(heureF);
+            // Convertir et formater la date de fin
+            String outputDateF = DateTimeConverter.formatDate(dateF, inputFormat, outputFormat);
 
-					Article a = new Article(nomArticle, desc, dateDebut, formattedHeureDebut, dateFin,
-							formattedHeureFin, prixInit, prixVente, userId, categorieId, adresseRetrait);
+            // Convertir et formater l'heure de fin sans les secondes
+            String outputHeureF = DateTimeConverter.formatHour(heureF);
 
-					ArticleManager.getInstance().ajouterArticle(a);
+            // Ajoutez des impressions pour vérifier les valeurs
+            System.out.println("nomArticle: " + nomArticle);
+            System.out.println("desc: " + desc);
+            System.out.println("categorie: " + categorie);
+            System.out.println("dateD: " + dateD);
+            System.out.println("heureD: " + heureD);
+            System.out.println("dateF: " + dateF);
+            System.out.println("heureF: " + heureF);
+            System.out.println("prixInit: " + prixInit);
+            System.out.println("adresseRetrait: " + adresseRetrait);
 
-					System.out.println("Requête SQL préparée avec succès.");
+            // Récupérer le no_categorie correspondant au libellé
+            int categorieId = CategorieManager.getInstance().getCategoryIdByLabel(categorie);
+            
+            // Conversion des chaînes en objets java.sql.Date et java.sql.Time
+            // Après la modification
+            LocalDate dateDebut = DateTimeConverter.convertStringToLocalDate(outputDateD);
+            System.out.println("LocalDate: " + formatDate(dateDebut));
+            LocalTime formattedHeureDebut = DateTimeConverter.convertStringToTime(outputHeureD);
+            LocalDate dateFin = DateTimeConverter.convertStringToLocalDate(outputDateF);
+            System.out.println("LocalDate: " + formatDate(dateFin));
+            LocalTime formattedHeureFin = DateTimeConverter.convertStringToTime(outputHeureF);
 
-					// Définir l'attribut de session pour le message de confirmation
-					session.setAttribute("confirmationMessage", "Votre article a été ajouté avec succès !");
+            // Ensuite, utilisez le constructeur correspondant
+            Article a = new Article(nomArticle, desc, dateDebut, formattedHeureDebut, dateFin, formattedHeureFin,
+                    prixInit, prixVente, userId, categorieId, adresseRetrait);
 
-					// Redirection vers la page de confirmation après l'ajout réussi
-					response.sendRedirect("form_add_new_item.jsp");
+            ArticleManager.getInstance().ajouterArticle(a);
 
-				} catch (ParseException e) {
-					// Gestion des erreurs de conversion de date
-					e.printStackTrace();
-					System.out.println("Erreur de conversion de date.");
-					response.sendRedirect("error.jsp");
-				}
-			} 
-	}
+            System.out.println("Requête SQL préparée avec succès.");
+
+            // Définir l'attribut de session pour le message de confirmation
+            session.setAttribute("confirmationMessage", "Votre article a été ajouté avec succès !");
+
+            // Redirection vers la page de confirmation après l'ajout réussi
+            response.sendRedirect("form_add_new_item.jsp");
+
+        } catch (ParseException e) {
+            // Gestion des erreurs de conversion de date
+            e.printStackTrace();
+            System.out.println("Erreur de conversion de date.");
+            response.sendRedirect("error.jsp");
+        }
+    }
+
+    public static class DateTimeConverter {
+
+        public static String formatDate(String dateStr, SimpleDateFormat inputFormat, SimpleDateFormat outputFormat)
+                throws ParseException {
+            java.util.Date utilDate = inputFormat.parse(dateStr);
+            Date date = new Date(utilDate.getTime());
+            return outputFormat.format(date);
+        }
+
+        public static String formatHour(String heureStr) throws ParseException {
+            LocalTime heure = convertStringToTime(heureStr);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+            return heure.format(formatter);
+        }
+
+        public static LocalDate convertStringToLocalDate(String dateStr) throws DateTimeParseException {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            return LocalDate.parse(dateStr, formatter);
+        }
+
+        public static LocalTime convertStringToTime(String heureStr) throws ParseException {
+            SimpleDateFormat heureFormat = new SimpleDateFormat("HH:mm", Locale.FRENCH);
+            java.util.Date parsedTime = heureFormat.parse(heureStr);
+            return LocalTime.ofInstant(parsedTime.toInstant(), TimeZone.getDefault().toZoneId());
+        }
+    }
+    
+    private String formatDate(LocalDate date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        return date.format(formatter);
+    }
+}

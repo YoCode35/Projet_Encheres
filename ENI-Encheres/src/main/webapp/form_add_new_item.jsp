@@ -63,14 +63,6 @@
 	                localStorage.setItem("prixInit", prixInitInput.value);
 	            });
 	        });
-	
-	        // Fonction pour formater l'heure dans le format "HH'h'mm"
-	        function formatHeure(heureStr) 
-	        {
-	            var heureFormat = new Intl.DateTimeFormat('fr', { hour: 'numeric', minute: 'numeric', hour12: false });
-	            var [hours, minutes] = heureFormat.formatToParts(new Date('2023-01-01 ' + heureStr));
-	            return hours.value + 'h' + minutes.value;
-	        }
 	    </script>
 	
 	</head>
@@ -80,7 +72,7 @@
 		<!-- Header -->
 		<%@ include file="includes/header.jsp" %>
 		
-		<h2>Ajouter un nouvel article</h2>
+		<h2>- Ajouter un nouvel article -</h2>
 		
 	
 	    <%@ page session="true" %>
@@ -112,7 +104,7 @@
 		        <textarea id="desc" name="desc" rows="4" cols="50" required></textarea><br>
 		
 		        <label class="additem" for="categorie">Catégorie :</label>
-		       	<select id="categorie" name="categorie" required>
+		       	<select id="categorie" name="categorie">
 		            <% 	List<String> categories = CategorieManager.getInstance().getValidCategories();
 		            	for (String category : categories) 
 		            	{ 
@@ -134,10 +126,10 @@
 		        <label class="additem" for="heureF">Heure de fin :</label>
 		        <input class="inputitem" type="time" id="heureF" name="heureF"><br>
 		
-		        <label class="additem" for="prixInit">Prix initial (€)* :</label>
-		        <input class="inputitem" type="number" id="prixInit" name="prixInit" placeholder="&euro;" required><br>
+		        <label class="additem" for="prixInit">Prix initial (€) :</label>
+		        <input class="inputitem" type="number" id="prixInit" name="prixInit" placeholder="&euro;"><br>
 		
-		        <label class="additem" for="adresseRetrait">Adresse de retrait* (<em>Par défaut, celle de votre profil</em>) :</label>
+		        <label class="additem" for="adresseRetrait">Adresse de retrait (<em>Par défaut, celle de votre profil</em>) :</label>
 		        <textarea name="adresseRetrait" id="adresseRetrait" rows="4" cols="50">
 		            <%= session.getAttribute("userCoordonnees") %>
 		        </textarea>

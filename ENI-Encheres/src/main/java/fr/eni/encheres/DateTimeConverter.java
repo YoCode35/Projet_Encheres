@@ -20,7 +20,7 @@ public class DateTimeConverter {
 	 */
 	public static Date convertStringToDate(String dateStr) throws ParseException {
 
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.FRENCH);
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.FRENCH);
 		java.util.Date parsedDate = dateFormat.parse(dateStr);
 		Date sqlDate = new Date(parsedDate.getTime());
 

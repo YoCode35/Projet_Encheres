@@ -44,22 +44,25 @@
 }
 
 /* Main content container */
-.title_encheres {
-  display: inline-block;
-  margin-top: -10px;
-  margin-left: 40px;
-  margin-bottom: 0;
-  padding: 10px 40px;
-  border: 1px solid rgb(205, 205, 205);
-  border-radius: 25px;
-  background-color: rgba(255, 255, 255, 0.5);
-  color: #000;
-  font-size: 15px;
-  font-weight: 400;
-  font-family: 'Inter', sans-serif;
+.title_auction {
+	display: flex;
+	justify-content: flex-end;
+  	margin-top: -10px;
+  	margin-right: 40px;
+  	margin-left: 10px;
+  	margin-bottom: 0;
+  	padding: 10px 40px;
+  	border: 1px solid rgb(205, 205, 205);
+  	border-radius: 25px;
+  	background: linear-gradient(to right, #fff7ee, #fff7ee);
+  	background-color: rgba(255, 255, 255, 0.5);
+  	color: #000;
+  	font-size: 15px;
+  	font-weight: 400;
+  	font-family: 'Inter', sans-serif;
 }
 
-.title_encheres a.consult_encheres:visited {
+.title_auction a.consult_auction:visited {
     color: rgb(0, 0, 0);
 }
 

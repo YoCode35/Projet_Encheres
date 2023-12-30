@@ -15,8 +15,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 	private static final String SQL_INSERT = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-	private static final String SQL_SELECTBY_ID = "SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit, administrateur \"\r\n"
-			+ "	+\"	FROM UTLISATEURS WHERE no_utilisateur = ?";
+	private static final String SQL_SELECTBY_ID = "SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit, administrateur " +
+	        "FROM UTILISATEURS WHERE no_utilisateur = ?";
 
 	private static final String SQL_VERIF_USER = "SELECT * FROM UTILISATEURS WHERE email=? AND mot_de_passe=?";
 	private static final String SQL_VERIF_EMAIL = "SELECT COUNT(*) AS email_count FROM UTILISATEURS WHERE email = ?";
@@ -76,19 +76,36 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	 */
 	@Override
 	public Utilisateur selectBy(Utilisateur u) {
-		Connection cnx = null;
-		PreparedStatement rqt;
-		try {
-			cnx = JdbcTools.getConnection();
-			rqt = cnx.prepareStatement(SQL_SELECTBY_ID);
-			rqt.setInt(1, u.getIdUtilisateur());
-			rqt.executeQuery();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return u;
-	}
+	    Connection cnx = null;
+	    PreparedStatement rqt = null;
+	    ResultSet rs = null;
+	    try {
+	        cnx = JdbcTools.getConnection();
+	        rqt = cnx.prepareStatement(SQL_SELECTBY_ID);
+	        rqt.setInt(1, u.getIdUtilisateur());
+	        rs = rqt.executeQuery();
 
+	        if (rs.next()) {
+	            // Remplir les propriétés de l'objet Utilisateur avec les données du résultat
+	            u.setPseudo(rs.getString("pseudo"));
+	            u.setNom(rs.getString("nom"));
+	            u.setPrenom(rs.getString("prenom"));
+	            u.setEmail(rs.getString("email"));
+	            u.setTelephone(rs.getString("telephone"));
+	            u.setRue(rs.getString("rue"));
+	            u.setCodePostal(rs.getString("code_postal"));
+	            u.setVille(rs.getString("ville"));
+	            u.setCredit(rs.getInt("credit"));
+	            u.setAdministrateur(rs.getBoolean("administrateur"));
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        JdbcTools.closeResources(cnx, rqt, rs);
+	    }
+
+	    return u;
+	}
 	/**
 	 * Permet de vérifier si l'utilisateur existe ou non dans la DB en contrôlant le
 	 * duo email/mot de passe
