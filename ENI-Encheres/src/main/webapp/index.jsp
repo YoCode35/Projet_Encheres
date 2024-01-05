@@ -16,12 +16,12 @@
 
 	<style>
 		.slick-next:before {
-			background: url(img/arrow_right_02.png) !important;
+			background: url(img/arrow_right.png) !important;
 			background-size: contain !important;
 		}
 	
 		.slick-prev:before {
-			background: url(img/arrow_left_02.png) !important;
+			background: url(img/arrow_left.png) !important;
 			background-size: contain !important;
 		}       
 	</style>
@@ -31,13 +31,19 @@
 		<!-- Header -->
 		<%@ include file="includes/header.jsp" %>
 		
+		<div class="title-eni">
+			<h1>Projet ENI</h1>
+		</div>
+		
 		<div class="welcome_message yellow_background">
-	    
+		    		
 	        <div class="slogan">
 	            <p>Adjugé,</p>
 	            <p>Enchères</p>
 	            <p>vendu !</p>
 	        </div>
+	        
+	        <img src="img/vendeur-aux-encheres_(200x273).png" alt="Vendeur-aux-enchères" class="img-vendeur">
         	
         	<p class="title_auction"><a class="consult_auction" href="NosEncheresServlet">Consultez nos enchères en cours</a></p>
 

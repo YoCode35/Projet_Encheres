@@ -64,7 +64,7 @@
 			    
 			<div class="menu-container-user">
 				
-			    <img src="img/icône_mon-compte_(50x150px).png" alt="Image de déclenchement" class="image-trigger">
+			    <img src="img/icone_mon-compte.png" alt="Image de déclenchement" class="image-trigger">
 			    <!--  <p class="mon-compte">Mon compte</p>-->
 			    
 			    <ul class="nav-user" id="menu-accordeon">

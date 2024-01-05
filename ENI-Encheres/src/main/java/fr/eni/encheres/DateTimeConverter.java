@@ -1,46 +1,41 @@
 package fr.eni.encheres;
 
 import java.sql.Date;
-import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * Regroupe les méthodes de conversion pour Date et Time.
  */
 public class DateTimeConverter {
 
-	/**
-	 * Permet la conversion d'une Date au format "yyyy-MM-dd".
-	 * 
-	 * @param dateStr
-	 * @return
-	 * @throws ParseException
-	 */
-	public static Date convertStringToDate(String dateStr) throws ParseException {
+    public static String formatDate(String dateStr, SimpleDateFormat inputFormat, SimpleDateFormat outputFormat)
+            throws ParseException {
+        java.util.Date utilDate = inputFormat.parse(dateStr);
+        Date date = new Date(utilDate.getTime());
+        return outputFormat.format(date);
+    }
 
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.FRENCH);
-		java.util.Date parsedDate = dateFormat.parse(dateStr);
-		Date sqlDate = new Date(parsedDate.getTime());
+    public static String formatHour(String heureStr) throws ParseException {
+        LocalTime heure = convertStringToTime(heureStr);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        return heure.format(formatter);
+    }
 
-		return sqlDate;
-	}
+    public static LocalDate convertStringToLocalDate(String dateStr) throws DateTimeParseException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        return LocalDate.parse(dateStr, formatter);
+    }
 
-	/**
-	 * Permet la conversion d'une heure (Time) au format "HH:mm".
-	 * 
-	 * @param heureStr
-	 * @return
-	 * @throws ParseException
-	 */
-	public static Time convertStringToTime(String heureStr) throws ParseException {
-
-		SimpleDateFormat heureFormat = new SimpleDateFormat("HH:mm", Locale.FRENCH);
-		java.util.Date parsedTime = heureFormat.parse(heureStr);
-		Time sqlTime = new Time(parsedTime.getTime());
-
-		return sqlTime;
-	}
-
+    public static LocalTime convertStringToTime(String heureStr) throws ParseException {
+        SimpleDateFormat heureFormat = new SimpleDateFormat("HH:mm", Locale.FRENCH);
+        java.util.Date parsedTime = heureFormat.parse(heureStr);
+        return LocalTime.ofInstant(parsedTime.toInstant(), TimeZone.getDefault().toZoneId());
+    }
 }

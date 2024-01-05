@@ -1,15 +1,12 @@
 package fr.eni.encheres.servlets;
 
 import java.io.IOException;
-import java.sql.Date;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.Locale;
-import java.util.TimeZone;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -19,13 +16,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.encheres.DateTimeConverter;
 import fr.eni.encheres.bll.ArticleManager;
 import fr.eni.encheres.bll.CategorieManager;
 import fr.eni.encheres.bo.Article;
 
 @MultipartConfig
 @WebServlet("/AddArticleServlet")
-public class AddArticleServlet extends HttpServlet {
+public class AddArticleServlet extends HttpServlet 
+{
     private static final long serialVersionUID = 1L;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
@@ -109,36 +108,10 @@ public class AddArticleServlet extends HttpServlet {
             System.out.println("Erreur de conversion de date.");
             response.sendRedirect("error.jsp");
         }
-    }
-
-    public static class DateTimeConverter {
-
-        public static String formatDate(String dateStr, SimpleDateFormat inputFormat, SimpleDateFormat outputFormat)
-                throws ParseException {
-            java.util.Date utilDate = inputFormat.parse(dateStr);
-            Date date = new Date(utilDate.getTime());
-            return outputFormat.format(date);
-        }
-
-        public static String formatHour(String heureStr) throws ParseException {
-            LocalTime heure = convertStringToTime(heureStr);
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-            return heure.format(formatter);
-        }
-
-        public static LocalDate convertStringToLocalDate(String dateStr) throws DateTimeParseException {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-            return LocalDate.parse(dateStr, formatter);
-        }
-
-        public static LocalTime convertStringToTime(String heureStr) throws ParseException {
-            SimpleDateFormat heureFormat = new SimpleDateFormat("HH:mm", Locale.FRENCH);
-            java.util.Date parsedTime = heureFormat.parse(heureStr);
-            return LocalTime.ofInstant(parsedTime.toInstant(), TimeZone.getDefault().toZoneId());
-        }
-    }
+    }   
     
-    private String formatDate(LocalDate date) {
+    private String formatDate(LocalDate date) 
+    {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         return date.format(formatter);
     }

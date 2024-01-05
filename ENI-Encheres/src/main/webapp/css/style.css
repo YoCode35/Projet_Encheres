@@ -10,6 +10,35 @@
 
 body {}
 
+.title-eni {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    margin-top: 70px; /* Ajustez cette valeur pour aligner le titre à la même hauteur que le slogan */
+}
+
+/* Style spécifique pour le titre h1 */
+.title-eni {
+  position: absolute;
+  right: 150px;
+  top: 130px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.title-eni h1 {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+  font-size: 30px;
+  font-style: italic;
+  color: #615856;
+  opacity: 0.2;
+}
+        
 h2 {
 	font-family: 'Inter', sans-serif;
 	text-align: center;

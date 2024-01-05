@@ -11,50 +11,55 @@
 /* Section avec arrière-plan jaune */
 .yellow_background {
   background: linear-gradient(to bottom, #fff7ee, #ffffff);
+  background-image: url('../img/bkgd_home-page.png');
+  background-size: 100% auto; /* Image couvrant toute la largeur sans déformation */
+  background-repeat: no-repeat;
+  background-position: top right;
   padding-top: 1px;
   margin-top: 50px;
+  height: 1400px; /* Ajustez la hauteur du conteneur selon vos besoins */
 }
 
 /* Slogan container */
 .slogan {
-  margin-top: 70px;
-  text-transform: uppercase;
-  font-size: 40px;
-  font-weight: bold;
-  color: rgb(0, 0, 0);
+    margin-top: 70px; /* Ajustez cette valeur pour aligner le slogan à la même hauteur que le titre */
+    text-transform: uppercase;
+    font-size: 40px;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
 }
 
 .slogan p {
-  font-size: 70px;
-  text-align: left;
-  text-transform: capitalize;
-  line-height: 0.01;
-  font-family: 'Inter', sans-serif;
-  margin-left: 20px;
-  font-weight: 500;
+    font-size: 70px;
+    text-align: left;
+    text-transform: capitalize;
+    line-height: 0.01;
+    font-family: 'Inter', sans-serif;
+    margin-left: 20px;
+    font-weight: 500;
 }
 
 .slogan p:nth-child(2) {
-  font-family: 'Sawarabi Mincho', sans-serif;
+    font-family: 'Sawarabi Mincho', sans-serif;
 }
 
 .slogan p:nth-child(3) {
-  font-family: 'Inter', sans-serif;
-  text-transform: lowercase;
+    font-family: 'Inter', sans-serif;
+    text-transform: lowercase;
 }
 
 /* Main content container */
 .title_auction {
 	display: flex;
 	justify-content: flex-end;
-  	margin-top: -10px;
+  	margin-top: -5px;
   	margin-right: 40px;
   	margin-left: 10px;
   	margin-bottom: 0;
   	padding: 10px 40px;
   	border: 1px solid rgb(205, 205, 205);
   	border-radius: 25px;
-  	background: linear-gradient(to right, #fff7ee, #fff7ee);
+  	background: linear-gradient(to right, rgba(255, 247, 238, 0.6), rgba(255, 247, 238, 0.3));
   	background-color: rgba(255, 255, 255, 0.5);
   	color: #000;
   	font-size: 15px;
@@ -71,9 +76,14 @@
   margin-top: 100px;
   justify-content: center;
   align-items: center;
-}
-
-.image-container_items {
   width: 1300px;
   height: 430px;
+}
+
+.img-vendeur {
+	display: relative;
+    width: 100px;
+    height: auto; /* Pour conserver les proportions de l'image */
+    margin-top: -45px;
+    margin-left: 300px;
 }
