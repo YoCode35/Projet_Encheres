@@ -1,9 +1,11 @@
 .myItems-container {
-    display: flex; /* Utilisation de flexbox pour ajuster la hauteur automatiquement */
-    flex-wrap: wrap; /* Permet aux éléments de passer à la ligne lorsque la largeur est dépassée */
-    width: 100%; /* Ajustez la largeur selon vos préférences */
-    margin: 0 0 0 12px; /* Centrage horizontal */
-    overflow: hidden; /* Clearfix pour éviter le débordement */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centrer horizontalement les éléments */
+    align-items: flex-start; /* Aligner les éléments en haut de la ligne */
+    width: 100%;
+    margin: 0 auto; /* Ajuster la marge pour centrer horizontalement */
+    overflow: hidden;
 }
 
 
@@ -44,3 +46,53 @@
 }
 
 .myItems a:hover { text-decoration: underline; }
+
+.mycountdown {
+	color: red;
+	line-height: 1.5;
+	width: 100%;
+	text-align: center;
+}
+
+/*Début ViewedMyProfile"*/
+.edit-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0 30px; /* Augmentez la marge pour plus d'espace */
+  font-size: 16px;
+  color: #fff; /* Texte blanc */
+  font-family: "Helvetica", sans-serif;
+  padding: 10px 20px; /* Ajustez la valeur du padding pour augmenter la hauteur */
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  background-color: #ff8c00; /* Fond orange */
+  transition: background-color 0.3s; /* Animation de transition pour le survol */
+}
+
+.edit-item:hover {
+  background-color: #ffa54f; /* Fond orange plus clair au survol */
+}
+
+.delete-item {
+  text-decoration: none;
+  background-color: #fff;
+  color: #ccc;
+  font-family: "Helvetica", sans-serif;
+  font-size: 16px;
+  padding: 10px 30px;
+  border: 1px solid #800000; /* Bordeaux */
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  transition: color 0.3s, border-color 0.3s, font-weight 0.3s; /* Ajout de transitions */
+  float: right; /* Float the delete account link to the right */
+  margin-left: 20px; /* Add spacing between the two buttons */
+}
+
+.delete-item:hover {
+  color: #f00;
+  border-color: #f00;
+}
+/*Fin ViewedMyProfile"*/

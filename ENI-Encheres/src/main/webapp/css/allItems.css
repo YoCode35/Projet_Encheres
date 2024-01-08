@@ -1,0 +1,111 @@
+.items-info-index {
+    border: 1px solid rgba(48, 58, 64, 0.7);
+    padding: 25px;
+    margin: 10px; /* Espace entre les fiches d'articles */
+    flex: 1; /* Permet aux fiches de prendre autant d'espace que possible */
+    min-height: 300px; /* Définissez la hauteur minimale souhaitée pour chaque annonce */
+    overflow: hidden;
+    font-size: 10px;
+    text-align: left;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    border-radius: 10px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.5));
+    display: flex;
+    flex-direction: column; /* Permet aux éléments internes de se disposer verticalement */
+    box-sizing: border-box; /* Inclut les bordures et le padding dans la largeur spécifiée */
+    width: 380px;
+    padding: 20px;
+    margin-left: 22px;
+}
+
+.item-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Force le conteneur à occuper 100% de la hauteur parente */
+}
+
+.container-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item-image {
+    display: block;
+    margin: 10px auto 10px; /* Ajustez la valeur négative de margin-top selon vos besoins */
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.title-allItems {
+	
+	background-color: 3498db;
+    color: #fff;
+    padding: 10px; /* Ajoutez un espace intérieur si nécessaire */
+    text-decoration: none; /* Supprime le soulignement du lien */
+	margin: 20px 0;      
+	font-family: 'Inter', sans-serif;
+	font-size: 16px;
+	border-radius: 5px;	
+}
+
+.title-detailItem {
+    text-decoration: underline; /* Soulignage */
+    margin-right: 5px; /* Espacement entre le titre et la valeur */
+    color: #002842; /* Couleur du texte */
+	font-size: 12px;
+	text-align: left;
+	font-family: 'Inter', sans-serif;
+	font-weight: 600;
+}
+div.descContent {
+	height: 100px; /* Permet au contenu de prendre 100% de la hauteur de l'élément parent */
+	padding-bottom: 25px;
+}
+
+p.articleContent {        
+	line-height: 1.4; /* Hauteur de ligne pour une meilleure lisibilité */
+	color: #3c4246; /* Couleur du texte */
+	font-size: 12px;
+	text-align: left;
+	font-family: 'Inter', sans-serif;
+	font-weight: 400;
+    display: -webkit-box;
+    -webkit-line-clamp: 6; /* Limitez le texte à 3 lignes */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+legend.auction-time {
+    color: #194109; /* Une nuance de vert */
+}
+
+div.auctiontimeContent{
+	height: 100px;
+    display: inline-block;
+    width: 100%;
+}
+
+.countdown {
+	color: red;
+	margin: 10px;
+	line-height: 1.5;
+}
+
+.deliveryAdress {
+  min-height: 70px; /* Définissez la hauteur souhaitée en pixels */
+  overflow: hidden; /* Cachez le contenu qui dépasse la hauteur spécifiée */
+  margin-bottom: 15px; /* Ajoutez une marge en bas pour un espacement visuel */
+}
+
+/* Styles pour le paragraphe avec la classe "readmore" */
+p.readmore {
+    margin-bottom: 30px; /* Ajouter de la marge en dessous du paragraphe */
+}
+
+p.readmore a {
+    color: #007BFF;
+    font-size: 12px;
+    text-decoration: underline;
+}

@@ -7,6 +7,8 @@ public class Article {
     private int idArticle;
     private String nomArticle;
     private String desc;
+    private String imgFileName;
+    private String imgFilePath;
     private LocalDate dateD;
     private LocalTime heureD;
     private LocalDate dateF;
@@ -35,11 +37,13 @@ public class Article {
      * @param numeroCat
      * @param adresseRetrait
      */
-    public Article(String nomArticle, String desc, LocalDate dateD, LocalTime heureD,
+    public Article(String nomArticle, String desc, String imgFileName, String imgFilePath, LocalDate dateD, LocalTime heureD,
                    LocalDate dateF, LocalTime heureF, int prixInit, int prixVente,
                    int numeroUtili, int numeroCat, String adresseRetrait) {
         this.nomArticle = nomArticle;
         this.desc = desc;
+        this.imgFileName = imgFileName;
+        this.imgFilePath = imgFilePath;
         this.dateD = dateD;
         this.heureD = heureD;
         this.dateF = dateF;
@@ -75,6 +79,22 @@ public class Article {
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+    
+    public String getImgFileName() {
+        return imgFileName;
+    }
+
+    public void setImgFileName(String imgFileName) {
+        this.imgFileName = imgFileName;
+    }
+    
+    public String getImgFilePath() {
+        return imgFilePath;
+    }
+
+    public void setImgFilePath(String imgFilePath) {
+        this.imgFilePath = imgFilePath;
     }
     
     public LocalDate getDateD() {
@@ -151,9 +171,21 @@ public class Article {
 
     @Override
     public String toString() {
-        return "Article [idArticle=" + idArticle + ", nomArticle=" + nomArticle + ", desc=" + desc + ", dateD=" + dateD
-                + ", heureD=" + heureD + ", dateF=" + dateF + ", heureF=" + heureF + ", prixInit=" + prixInit
-                + ", prixVente=" + prixVente + ", numeroUtili=" + numeroUtili + ", numeroCat=" + numeroCat
-                + ", adresseRetrait=" + adresseRetrait + "]";
+        return "Article"
+        		+ "[idArticle=" + idArticle 
+        		+ ", nomArticle=" + nomArticle 
+        		+ ", desc=" + desc 
+        		+ ", imgFileName=" + imgFileName 
+        		+ ", imgFilePath=" + imgFilePath 
+        		+ ", dateD=" + dateD
+                + ", heureD=" + heureD 
+                + ", dateF=" + dateF 
+                + ", heureF=" + heureF 
+                + ", prixInit=" + prixInit
+                + ", prixVente=" + prixVente 
+                + ", numeroUtili=" + numeroUtili 
+                + ", numeroCat=" + numeroCat
+                + ", adresseRetrait=" + adresseRetrait 
+                + "]";
     }
 }

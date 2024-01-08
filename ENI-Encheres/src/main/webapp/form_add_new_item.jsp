@@ -111,8 +111,10 @@
 		            %>
 		            		<option value="<%= category %>"><%= category %></option>
 		            <% 	} %>
-		        </select>
+		        </select>		
 		
+				<label class="additem" for="file">Sélectionner une image :</label>
+        		<input class="additem" type="file" name="file" id="file" accept="image/*">
 		        <!--<label class="additem" for="imageFile">Image :</label>
 		        <input class="inputitem" type="file" name="imageFile" id="imageFile"/>-->
 		
@@ -126,8 +128,8 @@
 		        <label class="additem" for="heureF">Heure de fin :</label>
 		        <input class="inputitem" type="time" id="heureF" name="heureF"><br>
 		
-		        <label class="additem" for="prixInit">Prix initial (€) :</label>
-		        <input class="inputitem" type="number" id="prixInit" name="prixInit" placeholder="&euro;"><br>
+		        <label class="additem" for="prixInit">Prix initial (point(s)) :</label>
+		        <input class="inputitem" type="number" id="prixInit" name="prixInit" placeholder="point(s)"><br>
 		
 		        <label class="additem" for="adresseRetrait">Adresse de retrait (<em>Par défaut, celle de votre profil</em>) :</label>
 		        <textarea name="adresseRetrait" id="adresseRetrait" rows="4" cols="50">

@@ -1,5 +1,6 @@
 package fr.eni.encheres.dal;
 
+import java.io.InputStream;
 import java.util.List;
 
 import fr.eni.encheres.bo.Article;
@@ -11,7 +12,7 @@ public interface ArticleDAO {
 	 * 
 	 * @param a
 	 */
-	public void insert(Article a);
+	public void insert(Article a, InputStream fichierInputStream);
 
 	/**
 	 * Permet la sélection d'un article à partir de son ID.

@@ -1,5 +1,6 @@
 package fr.eni.encheres.bll;
 
+import java.io.InputStream;
 import java.util.List;
 
 import fr.eni.encheres.bo.Article;
@@ -32,8 +33,8 @@ public class ArticleManager
 	 * Ajouter un article
 	 * @param a
 	 */
-	public void ajouterArticle(Article a) {
-		articleDAO.insert(a);
+    public void ajouterArticle(Article a, InputStream fichierInputStream) {
+        articleDAO.insert(a, fichierInputStream);
 	}
 
 	//Selection article par ID

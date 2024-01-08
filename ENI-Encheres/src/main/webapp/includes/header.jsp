@@ -6,13 +6,12 @@
 
 	<head>		    
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-   	 	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> -->
+		
     	<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
    	 	<script type="text/javascript" src="js/slick.min.js"></script>
-    	<!-- <link rel="stylesheet" type="text/css" media="all" href="css/slick.css">
-    	<link rel="stylesheet" type="text/css" media="all" href="css/slick-theme.css"> --> 	
-    	<link href="css/slick-factorise.css" rel="stylesheet">
-    	<link href="css/itemsIndex.css" rel="stylesheet" />
+   	 	
+    	<link href="css/slick.css" rel="stylesheet">
+    	<link href="css/allItems.css" rel="stylesheet" />
 		<link href="css/style.css" rel="stylesheet" />    
 		<link href="css/header.css" rel="stylesheet" />
 		<link href="css/nav.css" rel="stylesheet" />
@@ -48,6 +47,7 @@
 			    <label for="menu-toggle" class="menu-icon"><a class="hamb" href="AccueilServlet">&#9776;</a></label>		    
 			    <ul class="menu">
 			    	<li><a class="" href="NosEncheresServlet">Enchères en cours</a></li>
+			    	<li><a class="" href="cahier-des-charges-application-encheres.jsp">Cahier des charges de l'application</a></li>
 			        <li><a class="no-cursor" href="#">Actualité & astuces</a></li>
 			        <li><a class="no-cursor" href="#">Aide / Contact</a></li>
 			        <li><a class="no-cursor" href="#">Newsletter</a></li>
@@ -55,10 +55,8 @@
 			    </ul>
 			    
 			</div>			
-
 		
-			<% if (Boolean.TRUE.equals(isConnected)) { %>
-		        
+			<% if (Boolean.TRUE.equals(isConnected)) { %>		        
 	
 			<p class="userConnect">Bienvenue, <%= session.getAttribute("userPseudo") %> ! Vous êtes connecté. Votre crédit actuel est de <span class="credit"><%= creditText %>.</span></p>
 			    
@@ -102,28 +100,6 @@
 			    
 			</div>
 			
-			<script>
-			document.addEventListener('DOMContentLoaded', function () {
-			    const submenuItems = document.querySelectorAll('.has-submenu');
-
-			    submenuItems.forEach(function (item) {
-			        const submenu = item.querySelector('.nav-submenu');
-
-			        item.addEventListener('click', function (event) {
-			            if (event.target.classList.contains('nav-link')) {
-			                event.preventDefault(); // Empêche le comportement par défaut du lien
-
-			                // Affiche ou masque le sous-menu en fonction de son état actuel
-			                submenu.style.maxHeight = submenu.style.maxHeight ? null : submenu.scrollHeight + 'px';
-
-			                // Ajoute ou supprime la classe 'open' sur le parent
-			                item.classList.toggle('open');
-			                }
-			            });
-			        });
-			    });
-			</script>
-			
 			<div class="image-container-panier">
 				<img src="img/icone_mon-panier.png" alt="Mes transactions">
 			</div>
@@ -134,15 +110,17 @@
 			<div class="container-connect">
 				
 				<form class="connectdb" action="ServletConnectDB" method="post">
+				
 					<input class="connectdb" placeholder="Email" type="email" name="email" required />
 					<input class="connectdb" placeholder="Mot de passe" type="password" name="password" required />
 					<button class="connectdb" type="submit">Se connecter</button>
+				    
 				    <div class="remember-group">
 						<label for="rememberMe">Se souvenir de moi</label>
 						<input type="checkbox" id="rememberMe" name="rememberMe">
-						<!-- lien "Mot de passe oublié" à droite -->
 						<a href="reinitpassword.jsp" class="forget-mdp">Mot de passe oublié ?</a>
 				    </div>
+				    
 				</form>
 					
 				<a href="register.jsp" class="btn-register">S'inscrire</a>
@@ -151,7 +129,47 @@
 		    <!-- Fin du contenu pour l'utilisateur non connecté -->
 	           
 		    <% } %>
+		    
+			<div id="breadcrumb">
+            	<!-- Le fil d'Ariane est généré ici par JavaScript -->
+        	</div>
 			
 		</nav> 
 		       
 	</header>
+
+	<script>
+	
+		document.addEventListener('DOMContentLoaded', function()
+		{
+		    // Récupérez l'élément du fil d'Ariane
+		    var breadcrumb = document.getElementById('breadcrumb');
+	
+		    // Créez une fonction pour générer le fil d'Ariane en fonction de l'emplacement de l'utilisateur
+		    function generateBreadcrumb()
+		    {
+		        var pathArray = window.location.pathname.split('/').filter(function(item)
+		        {
+		            return item !== ''; // Supprimez les éléments vides
+		        });
+	
+		        var breadcrumbHTML = '<a href="#">Accueil</a> › ';
+	
+		        pathArray.forEach(function(path, index)
+		        {
+		            var isLast = index === pathArray.length - 1;
+		            breadcrumbHTML += '<a href="#">' + path + '</a>';
+		            if (!isLast)
+		            {
+		                breadcrumbHTML += ' › ';
+		            }
+		        });
+	
+		        breadcrumb.innerHTML = breadcrumbHTML;
+		    }
+	
+		    // Appelez la fonction initiale
+		    generateBreadcrumb();
+		});
+		
+	</script>

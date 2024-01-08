@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import="java.util.List" %>
+
+<%@ page import="fr.eni.encheres.util.DateTimeFormatterUtil" %>
+
 <%@ page import="fr.eni.encheres.bo.Article" %>
 
 <!DOCTYPE html>
@@ -29,25 +35,65 @@
 	                    
 	                        <div class="myItems-info">
 	                        
-	                            <!-- Texte simple pour représenter l'image -->                            
-	                            <span>Image Placeholder</span>
+								<span class="container-image">
+									<img class="item-image" src="${article.getImgFilePath()}" alt="${article.getNomArticle()}">
+								</span>
 	                            
 	                            <h3 class="myItems"><a href="#"><c:out value='${article.nomArticle}' /></a></h3>
 	                            
-	                            <p class="indexItem"><span class="title-detailItem">Description :</span> ${article.desc}</p>
-	                            
-				                <!-- Fieldset for Auction Information -->
-				                <fieldset class="auction-info-dates">
-									<legend>Informations d'enchère</legend>
-				                    <p class="indexItem"><span class="title-detailItem">Début de l'enchère :</span> ${article.dateD} à  ${article.heureD}</p>
-				                    <p class="indexItem"><span class="title-detailItem">Fin de l'enchère :</span> ${article.dateF} à ${article.heureF}</p>
-								</fieldset>
+		                            <div class="descContent">
+		                            	<p class="articleContent"><span class="title-detailItem">Description :</span> ${article.desc}</p>                            
+									</div>
 									
-	                            <p class="indexItem"><span class="title-detailItem">Prix Initial :</span> ${article.prixInit} €</p>
-	                            <p class="indexItem"><span class="title-detailItem">Livraison (Adresse de retrait) :</span> ${article.adresseRetrait}</p>
+									<!-- Début Fieldset for Auction Information -->
+									<fieldset class="auction-info-dates">
+									
+										<legend class="auction-time">Informations sur l'enchère en cours</legend>
+									    
+									    <div class="auctiontimeContent">
+									    
+										    <p class="articleContent">
+										        <span class="title-detailItem">Début de l'enchère :</span>
+										        Le 
+										        <fmt:parseDate value="${article.dateD}" var="parsedDate" pattern="yyyy-MM-dd" />
+										        <fmt:formatDate value="${parsedDate}" var="formattedDate" pattern="dd-MM-yyyy" />
+										        ${formattedDate}
+										        à
+										        <fmt:parseDate value="${article.heureD}" var="parsedTime" pattern="HH:mm" />
+										        <fmt:formatDate value="${parsedTime}" var="formattedTime" pattern="HH:mm" />
+										        ${formattedTime}
+										     </p>
+										
+											 <p class="mycountdown" data-end-date="${article.dateF} ${article.heureF}"></p>
+										     
+										     <p class="articleContent">   
+										        <span class="title-detailItem">Fin de l'enchère :</span> 
+										        Le
+										        <fmt:parseDate value="${article.dateF}" var="parsedDate" pattern="yyyy-MM-dd" />
+										        <fmt:formatDate value="${parsedDate}" var="formattedDate" pattern="dd-MM-yyyy" />
+										        ${formattedDate}
+										        à
+										        <fmt:parseDate value="${article.heureF}" var="parsedTime" pattern="HH:mm" />
+										        <fmt:formatDate value="${parsedTime}" var="formattedTime" pattern="HH:mm" />
+										        ${formattedTime}
+										    </p>
+										
+										</div>
+									
+									</fieldset>
+									<!-- Fin Fieldset for Auction Information -->
+									
+	                            <p class="articleContent"><span class="title-detailItem">Prix Initial :</span> ${article.prixInit} points</p>
 	                            
-	                            <p class="readmore"><a href="#">En savoir + &raquo;</a></p>
-	                            
+								<div class="deliveryAdress">
+									<p class="articleContent"><span class="title-detailItem">Livraison (Adresse de retrait) :</span> ${article.adresseRetrait}</p>
+								</div>
+			
+								<!-- "" -->
+						        <a class="edit-item" href="<%=request.getContextPath()%>/#">Modifier mon annonce</a>
+								
+								<!-- Supprime l'annonce de l'Utilisateur de la base de donnée -->
+								<a class="delete-item" href="<%=request.getContextPath()%>/#">Supprimer mon annonce</a>	                            
 	                        </div>
 	                    
 	                </c:forEach>
@@ -57,19 +103,6 @@
 	        </div><!-- @end .items-container -->
 	        
 		</main>
-
-    	<!-- Log pour vérifier si la liste d'articles est correctement transmise à la JSP -->
-    	<%
-	        System.out.println("Liste d'articles dans la JSP : ");
-	        List<Article> articles = (List<Article>) request.getAttribute("mesArticles");
-	        if (articles != null) {
-	            for (Article article : articles) {
-	                System.out.println(article);
-	            }
-	        } else {
-	            System.out.println("La liste d'articles est null.");
-	        }
-    	%>
 
 	</body>
 

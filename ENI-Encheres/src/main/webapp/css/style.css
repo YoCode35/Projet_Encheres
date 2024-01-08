@@ -15,10 +15,15 @@ body {}
     flex-direction: column;
     align-items: flex-end;
     justify-content: flex-start;
-    margin-top: 70px; /* Ajustez cette valeur pour aligner le titre à la même hauteur que le slogan */
+    margin-top: 60px; /* Ajustez cette valeur pour aligner le titre à la même hauteur que le slogan */
 }
 
-/* Style spécifique pour le titre h1 */
+/* Début Style spécifique pour le titre h1 */
+.container-h1 {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 .title-eni {
   position: absolute;
   right: 150px;
@@ -37,7 +42,21 @@ body {}
   font-style: italic;
   color: #615856;
   opacity: 0.2;
+  display: flex; /* Permet à l'image d'être alignée à côté du titre */
+  align-items: center; /* Aligne verticalement le contenu du titre */
 }
+
+.logo-eni {
+	position: absolute;
+	right: 80px;
+	top: 180px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	justify-content: flex-end;
+	opacity: 0.3;
+}
+/* Fin Style spécifique pour le titre h1 */
         
 h2 {
 	font-family: 'Inter', sans-serif;

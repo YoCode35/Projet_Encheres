@@ -10,6 +10,7 @@ header {
 	width: 100%;
 	background-color: rgb(255, 255, 255);
 	color: rgb(255, 255, 255);
+	height: 0; /* Ajustez la hauteur selon vos besoins */
 }
 
 /* Main content container */
@@ -21,12 +22,12 @@ nav {
 }
 
 .userConnect {
-	font-size: 15px;
-	color: rgb(91, 91, 91);
-	font-family: 'Inter', sans-serif;
-	font-weight: 400;
-	text-align: left;
-	margin: 0 175px;
+  font-size: 15px;
+  color: rgb(91, 91, 91);
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  text-align: left;
+  margin: 0 350px;
 }
 
 .credit {
@@ -40,16 +41,17 @@ nav {
 .container-connect {
   display: flex;
   justify-content: flex-end;
-  align-items: center;
-  height: 30px;
-  margin-top: 15px;
+  align-items: baseline;
 }
-
 
 form.connectdb {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  align-items: baseline; /* Aligne les éléments sur leur ligne de base */
+}
+
+.connectdb {
+  margin-top: 0;
+  margin-right: 10px; /* Ajoute une marge entre les éléments */
 }
 
 /* Champ de saisie */
@@ -60,7 +62,7 @@ form.connectdb {
 		border-radius: 5px;
 		font-size: 16px;		
 		box-sizing: border-box;		
-		margin-right: 15px; /* Ajoute de l'espace en bas de chaque champ de saisie */
+		margin: 15px;
     }
     
     .connectdb input[type="email"] {
@@ -68,7 +70,7 @@ form.connectdb {
   		font-size: 13px;
   		font-family: 'Inter', sans-serif;
   		width: 300px;
-  		margin-top: 12px;
+  		margin-top: 0;
 	}
     
     .connectdb input[type="password"] {
@@ -76,7 +78,7 @@ form.connectdb {
   		font-size: 13px;
   		font-family: 'Inter', sans-serif;
   		width: 200px;
-  		margin-top: 12px;
+  		margin-top: 0;
 	}
 
     .connectdb input:focus {
@@ -100,7 +102,7 @@ form.connectdb {
   font-weight: 400;
   font-family: 'Inter', sans-serif;
   cursor: pointer;
-  margin-left: 10px;
+  margin: 0;
 }
 
 .connectdb button:hover {
@@ -111,21 +113,21 @@ form.connectdb {
 
 .connectdb button, a.btn_register {
 	color: #fff;
-  	margin: 5px;
+  	margin: 0 5px;
 }
 
 /* Début du Style du label "Se souvenir de moi" */
 .container-connect label {
   display: inline-block; /* Permet d'ajuster la verticalité et l'espacement */
   vertical-align: middle; /* Alignement vertical */
-  margin: 10px 5px; /* Espacement en bas */
+  margin: 0 5px; /* Espacement en bas */
   color: #000;
   font-size: 12px; /* Vous pouvez ajuster la taille selon vos besoins */
-  line-height: 24px; /* Ajustez cette valeur pour un meilleur alignement vertical */
+  line-height: 0; /* Ajustez cette valeur pour un meilleur alignement vertical */
 }
 
 #rememberMe {
-  margin-right: 20px;
+  margin: 0;
   vertical-align: middle; /* Alignement vertical avec le texte */
 }
 
@@ -133,7 +135,7 @@ form.connectdb {
   font-size: 12px;
   color: #000;
   text-decoration: underline;
-  margin-right: 50px;
+  margin: 0 25px;
 }
 /* Fin du Style du label "Se souvenir de moi" */
 
@@ -158,3 +160,28 @@ form.connectdb {
 }
 /* Fin Container pour le formulaire de connexion et le lien d'inscription */
 /*===============================================================================*/
+/*===============================================================================*/
+/* Début Fil d'Ariane */
+#breadcrumb {
+  	position: absolute;
+  	left: 45px;
+  	top: 80px;
+
+
+
+    font-size: 14px;
+    color: rgb(91, 91, 91);
+}
+
+#breadcrumb a {
+    color: rgb(91, 91, 91);
+    text-decoration: none;
+}
+
+#breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+#breadcrumb span {
+    color: #ccc;
+}
