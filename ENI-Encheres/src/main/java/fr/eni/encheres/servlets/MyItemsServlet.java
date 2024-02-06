@@ -21,39 +21,35 @@ public class MyItemsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
+        // Nom de la page pour le fil d'Ariane
+        String pageName = "Mes articles à vendre";
+        // Nom de la page à la requête en tant qu'attribut pour le fil d'Ariane
+        request.setAttribute("pageName", pageName);
+		
 		HttpSession session = request.getSession();
 
 		// Vérifie si l'utilisateur est connecté
-		if (session.getAttribute("userID") != null) {
+		if (session.getAttribute("userID") != null) 
+		{
 			// L'utilisateur est connecté
 			Integer userId = (Integer) session.getAttribute("userID");
 
 			// Récupère la liste des articles à vendre de l'utilisateur
 			List<Article> mesArticles = new ArrayList<>();
 
-			// Log avant la récupération de la liste d'articles
-			System.out.println("Avant récupération de la liste d'articles");
-
 			mesArticles = ArticleManager.getInstance().getMesArticles(userId);
-
-			// Log après la récupération de la liste d'articles
-			System.out.println("Liste d'articles après récupération : " + mesArticles);
 
 			// Liste des articles mise dans la session pour être utilisée dans la JSP
 			request.setAttribute("mesArticles", mesArticles);
-
-			// Log avant la redirection vers la JSP
-			System.out.println("Avant redirection vers myItemsForSale.jsp");
-
+			
 			// Redirige vers la page "Mes articles à vendre"
 			RequestDispatcher dispatcher = request.getRequestDispatcher("myItemsForSale.jsp");
 			dispatcher.forward(request, response);
-
-			// Log après la redirection vers la JSP
-			System.out.println("Après redirection vers myItemsForSale.jsp");
-		} else {
+		} 
+		else 
+		{
 			// L'utilisateur n'est pas connecté
 			response.sendRedirect(request.getContextPath() + "/login.jsp");
 		}

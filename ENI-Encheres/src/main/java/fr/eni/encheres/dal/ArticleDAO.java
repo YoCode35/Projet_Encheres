@@ -20,9 +20,9 @@ public interface ArticleDAO {
 	 * @param articleId
 	 * @return
 	 */
-	public Article selectById(int articleId);
+	public Article selectById(int itemId);
 
-	// public Article selectByArt(Article a); //TODO à voir si utile sinon à supprimer
+	public Article selectByNoArt(Article a);
 
 	// public Article selectByArtDateDebut(Article a); //TODO à voir si utile sinon à supprimer
 
@@ -38,7 +38,7 @@ public interface ArticleDAO {
 	 * 
 	 * @param a
 	 */
-	public void update(Article a);
+	void updateArticle(Article a, InputStream fichierInputStream);
 
 	/***
 	 * Permet la suppression d'un article.
@@ -54,5 +54,4 @@ public interface ArticleDAO {
 	 * @return
 	 */
 	public List<Article> getMesArticles(int userId);
-
 }

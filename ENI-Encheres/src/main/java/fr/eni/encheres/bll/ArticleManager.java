@@ -1,6 +1,7 @@
 package fr.eni.encheres.bll;
 
 import java.io.InputStream;
+
 import java.util.List;
 
 import fr.eni.encheres.bo.Article;
@@ -13,7 +14,8 @@ public class ArticleManager
 	private ArticleDAO articleDAO;
 	
 	
-	private ArticleManager() {
+	private ArticleManager() 
+	{
 		articleDAO = DAOFactory.getArticleDAO();
 	}
 
@@ -21,7 +23,8 @@ public class ArticleManager
 	 * Obtenir l'instance unique
 	 * @return
 	 */
-	public static ArticleManager getInstance() {
+	public static ArticleManager getInstance() 
+	{
 		if(instance == null) 
 		{			
 			instance = new ArticleManager();
@@ -33,7 +36,8 @@ public class ArticleManager
 	 * Ajouter un article
 	 * @param a
 	 */
-    public void ajouterArticle(Article a, InputStream fichierInputStream) {
+    public void ajouterArticle(Article a, InputStream fichierInputStream) 
+    {
         articleDAO.insert(a, fichierInputStream);
 	}
 
@@ -43,8 +47,9 @@ public class ArticleManager
 	 * @param articleId L'ID de l'article à sélectionner
 	 * @return L'article correspondant à l'ID
 	 */
-	public Article selectById(int articleId) {
-	    return articleDAO.selectById(articleId);
+	public Article selectById(int itemId) 
+	{
+	    return articleDAO.selectById(itemId);
 	}
 
 	//Selection de la liste de tous les articles
@@ -52,7 +57,8 @@ public class ArticleManager
 	 * Selection de la liste de tous les articles
 	 * @return
 	 */
-	public List<Article> selectAll () {
+	public List<Article> selectAll () 
+	{
 		return articleDAO.selectAll();
 	}
 
@@ -61,17 +67,23 @@ public class ArticleManager
 	 * Modification d'un article
 	 * @param a
 	 */
-	public void updateArticle (Article a) {
-		articleDAO.update(a);
+	public void updateArticle(Article updatedArticle, InputStream imageInputStream) 
+	{
+	    ArticleDAO articleDAO = DAOFactory.getArticleDAO();
+	    articleDAO.updateArticle(updatedArticle, imageInputStream);
 	}
-
+	
 	//Suppression d'un article
 	/**
 	 * Suppression d'un article
 	 * @param a
 	 */
-	public void deleteArticle (Article a) {
-		articleDAO.delete(a);
+	public void deleteArticle(Article article) 
+	{
+	    // Implémentez la logique pour supprimer l'article de votre système de stockage
+	    // Par exemple, vous pouvez utiliser votre ArticleDAO pour effectuer la suppression
+	    ArticleDAO articleDAO = DAOFactory.getArticleDAO();
+	    articleDAO.delete(article);
 	}
 	
 	/**
@@ -79,7 +91,8 @@ public class ArticleManager
 	 * @param userId
 	 * @return la liste des articles
 	 */
-	public List<Article> getMesArticles(int userId){
+	public List<Article> getMesArticles(int userId)
+	{
 		return articleDAO.getMesArticles(userId);
 	}
 }

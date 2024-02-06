@@ -26,6 +26,6 @@ public class ServletLogout extends HttpServlet
         }
 
         // Redirige vers la page d'accueil ou une autre page après la déconnexion
-        response.sendRedirect("AccueilServlet");
+        response.sendRedirect("Accueil");
     }
 }

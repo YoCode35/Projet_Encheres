@@ -23,6 +23,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	private static final String SQL_VERIF_PSEUDO = "SELECT COUNT(*) AS pseudo_count FROM UTILISATEURS WHERE pseudo = ?";
 
 	private static final String SQL_SELECT_EMAIL = "SELECT * FROM UTILISATEURS WHERE email = ?";
+	//private static final String SQL_SELECT_PSEUDO = "SELECT pseudo FROM Utilisateurs WHERE no_utilisateur = ?";
 
 	private static final String SQL_SELECT_ALL = "SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit, administrateur \"\r\n"
 			+ " +\" FROM UTILISATEURS";

@@ -44,10 +44,10 @@
 			<div class="menu-container-general">
 			
 			    <input type="checkbox" id="menu-toggle">
-			    <label for="menu-toggle" class="menu-icon"><a class="hamb" href="AccueilServlet">&#9776;</a></label>		    
+			    <label for="menu-toggle" class="menu-icon"><a class="hamb" href="Accueil">&#9776;</a></label>		    
 			    <ul class="menu">
 			    	<li><a class="" href="NosEncheresServlet">Enchères en cours</a></li>
-			    	<li><a class="" href="cahier-des-charges-application-encheres.jsp">Cahier des charges de l'application</a></li>
+			    	<li><a class="" href="CahierDesCharges">Cahier des charges de l'application</a></li>
 			        <li><a class="no-cursor" href="#">Actualité & astuces</a></li>
 			        <li><a class="no-cursor" href="#">Aide / Contact</a></li>
 			        <li><a class="no-cursor" href="#">Newsletter</a></li>
@@ -57,9 +57,11 @@
 			</div>			
 		
 			<% if (Boolean.TRUE.equals(isConnected)) { %>		        
-	
-			<p class="userConnect">Bienvenue, <%= session.getAttribute("userPseudo") %> ! Vous êtes connecté. Votre crédit actuel est de <span class="credit"><%= creditText %>.</span></p>
-			    
+			
+			<div class="userConnect-container">
+				<p class="userConnect">Bienvenue, <%= session.getAttribute("userPseudo") %> ! Vous êtes connecté. Votre crédit actuel est de <span class="credit"><%= creditText %>.</span></p>
+			</div>
+			   
 			<div class="menu-container-user">
 				
 			    <img src="img/icone_mon-compte.png" alt="Image de déclenchement" class="image-trigger">
@@ -82,13 +84,13 @@
 					    <a href="#" class="nav-link">Mes ventes</a>
 					    <div class="nav-submenu">
 					        <a href="MyItemsServlet" class="nav-submenu-link">Mes articles</a>
-					        <a href="form_add_new_item.jsp" class="nav-submenu-link">Créer un nouvel article</a>
+					        <a href="AddArticleServlet" class="nav-submenu-link">Créer un nouvel article</a>
 					    </div>
 					</li>
 					<li class="nav-item has-submenu">
 					    <a href="#" class="nav-link">Mes informations personnelles</a>
 					    <div class="nav-submenu">
-					        <a href="userProfil.jsp" class="nav-submenu-link">Mon profil</a>
+					        <a href="UserProfilServlet" class="nav-submenu-link">Mon profil</a>
 					    </div>
 					</li>
 			        <li class="nav-item">
@@ -128,7 +130,7 @@
 			</div>
 		    <!-- Fin du contenu pour l'utilisateur non connecté -->
 	           
-		    <% } %>
+		    <% } %>		    
 		    
 			<div id="breadcrumb">
             	<!-- Le fil d'Ariane est généré ici par JavaScript -->
@@ -137,39 +139,42 @@
 		</nav> 
 		       
 	</header>
-
+	
 	<script>
 	
-		document.addEventListener('DOMContentLoaded', function()
+		document.addEventListener('DOMContentLoaded', function() 
 		{
-		    // Récupérez l'élément du fil d'Ariane
-		    var breadcrumb = document.getElementById('breadcrumb');
-	
-		    // Créez une fonction pour générer le fil d'Ariane en fonction de l'emplacement de l'utilisateur
-		    function generateBreadcrumb()
+		    // Récupérez le nom de la page depuis la valeur attribuée par la servlet
+		    var pageName = "${pageContext.request.getAttribute('pageName')}";
+		    
+		    // Si la page est la page d'accueil, ne générez pas de lien vers l'accueil
+		    if (pageName === "Accueil") 
 		    {
-		        var pathArray = window.location.pathname.split('/').filter(function(item)
+		        var breadcrumb = document.getElementById('breadcrumb');
+		        breadcrumb.innerHTML = '<span>' + pageName + '</span>';
+		    } 
+		    else 
+		    {
+		        var breadcrumb = document.getElementById('breadcrumb');
+		        
+		        // Générez le fil d'Ariane en utilisant le nom de la page
+		        breadcrumb.innerHTML = '<a href="Accueil">Accueil</a> › ';
+		        
+		        // Si la page est "Modifier mon profil", ajoutez également le lien vers "Mon profil"
+		        if (pageName === "Modifier mon profil") 
 		        {
-		            return item !== ''; // Supprimez les éléments vides
-		        });
-	
-		        var breadcrumbHTML = '<a href="#">Accueil</a> › ';
-	
-		        pathArray.forEach(function(path, index)
+		            breadcrumb.innerHTML += '<a href="UserProfilServlet">Mon profil</a> › ';
+		        }
+		        
+		        // Si la page est "Modifier mon profil", ajoutez également le lien vers "Mon profil"
+		        if (pageName === "Modifier mon annonce") 
 		        {
-		            var isLast = index === pathArray.length - 1;
-		            breadcrumbHTML += '<a href="#">' + path + '</a>';
-		            if (!isLast)
-		            {
-		                breadcrumbHTML += ' › ';
-		            }
-		        });
-	
-		        breadcrumb.innerHTML = breadcrumbHTML;
+		            breadcrumb.innerHTML += '<a href="UpdateItemServlet">Mes articles à vendre</a> › ';
+		        }
+		        
+		        // Ajoutez le nom de la page actuelle
+		        breadcrumb.innerHTML += '<span>' + pageName + '</span>';
 		    }
-	
-		    // Appelez la fonction initiale
-		    generateBreadcrumb();
 		});
 		
 	</script>

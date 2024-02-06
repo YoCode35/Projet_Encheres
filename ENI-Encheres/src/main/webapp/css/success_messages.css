@@ -1,6 +1,30 @@
-.confirmation-message {
+@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
+div.confirmation-message {
+	font-family: 'Gloria', sans-serif;
     background-color: green;
     color: white;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    padding: 10px;
+    font-weight: 200;
+    border-radius: 15px;
+    position: fixed; /* Position fixe par rapport à la fenêtre */
+    top: 50%; /* Place le haut de l'élément au milieu de la fenêtre */
+    left: 50%; /* Place la gauche de l'élément au milieu de la fenêtre */
+    transform: translate(-50%, -50%); /* Centre l'élément */
+}
+
+div.addItem_confirmMessage {
+	font-family: 'Gloria', sans-serif;
+    background-color: green;
+    color: white;
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 10px;
+    font-weight: 200;
+    border-radius: 15px;
+    position: fixed; /* Position fixe par rapport à la fenêtre */
+    top: 12%; /* Place le haut de l'élément au milieu de la fenêtre */
+    left: 50%; /* Place la gauche de l'élément au milieu de la fenêtre */
+    transform: translate(-50%, -50%); /* Centre l'élément */
 }

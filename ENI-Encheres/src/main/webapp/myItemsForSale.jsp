@@ -6,7 +6,6 @@
 <%@ page import="java.util.List" %>
 
 <%@ page import="fr.eni.encheres.util.DateTimeFormatterUtil" %>
-
 <%@ page import="fr.eni.encheres.bo.Article" %>
 
 <!DOCTYPE html>
@@ -33,70 +32,78 @@
 	            
 	                <c:forEach var="article" items="${mesArticles}">
 	                    
-	                        <div class="myItems-info">
+						<div class="myItems-info">
 	                        
-								<span class="container-image">
-									<img class="item-image" src="${article.getImgFilePath()}" alt="${article.getNomArticle()}">
-								</span>
+							<span class="container-image">
+								<img class="item-image" src="${article.getImgFilePath()}" alt="${article.getNomArticle()}">
+							</span>
 	                            
-	                            <h3 class="myItems"><a href="#"><c:out value='${article.nomArticle}' /></a></h3>
+							<h3 class="myItems"><a href="#"><c:out value='${article.nomArticle}' /></a></h3>
 	                            
-		                            <div class="descContent">
-		                            	<p class="articleContent"><span class="title-detailItem">Description :</span> ${article.desc}</p>                            
-									</div>
+							<div class="myDescContent">
+								<p class="myArticleContent"><span class="title-detailItem">Description :</span> ${article.desc}</p>                            
+							</div>
 									
-									<!-- Début Fieldset for Auction Information -->
-									<fieldset class="auction-info-dates">
+							<!-- Début Fieldset for Auction Information -->
+							<fieldset class="auction-info-dates">
 									
-										<legend class="auction-time">Informations sur l'enchère en cours</legend>
+								<legend class="auction-time">Informations sur l'enchère en cours</legend>
 									    
-									    <div class="auctiontimeContent">
+								<div class="auctiontimeContent">
 									    
-										    <p class="articleContent">
-										        <span class="title-detailItem">Début de l'enchère :</span>
-										        Le 
-										        <fmt:parseDate value="${article.dateD}" var="parsedDate" pattern="yyyy-MM-dd" />
-										        <fmt:formatDate value="${parsedDate}" var="formattedDate" pattern="dd-MM-yyyy" />
-										        ${formattedDate}
-										        à
-										        <fmt:parseDate value="${article.heureD}" var="parsedTime" pattern="HH:mm" />
-										        <fmt:formatDate value="${parsedTime}" var="formattedTime" pattern="HH:mm" />
-										        ${formattedTime}
-										     </p>
+									<p class="articleContent">
 										
-											 <p class="mycountdown" data-end-date="${article.dateF} ${article.heureF}"></p>
+										<span class="title-detailItem">Début de l'enchère :</span>
+										Le 
+										<fmt:parseDate value="${article.dateD}" var="parsedDate" pattern="yyyy-MM-dd" />
+										<fmt:formatDate value="${parsedDate}" var="formattedDate" pattern="dd-MM-yyyy" />
+										${formattedDate}
+										à
+										<fmt:parseDate value="${article.heureD}" var="parsedTime" pattern="HH:mm" />
+										<fmt:formatDate value="${parsedTime}" var="formattedTime" pattern="HH:mm" />
+										${formattedTime}
+											
+									</p>
+										
+									<p class="mycountdown" data-end-date="${article.dateF} ${article.heureF}"></p>
 										     
-										     <p class="articleContent">   
-										        <span class="title-detailItem">Fin de l'enchère :</span> 
-										        Le
-										        <fmt:parseDate value="${article.dateF}" var="parsedDate" pattern="yyyy-MM-dd" />
-										        <fmt:formatDate value="${parsedDate}" var="formattedDate" pattern="dd-MM-yyyy" />
-										        ${formattedDate}
-										        à
-										        <fmt:parseDate value="${article.heureF}" var="parsedTime" pattern="HH:mm" />
-										        <fmt:formatDate value="${parsedTime}" var="formattedTime" pattern="HH:mm" />
-										        ${formattedTime}
-										    </p>
+									<p class="articleContent"> 
+										  
+										<span class="title-detailItem">Fin de l'enchère :</span> 
+										Le
+										<fmt:parseDate value="${article.dateF}" var="parsedDate" pattern="yyyy-MM-dd" />
+										<fmt:formatDate value="${parsedDate}" var="formattedDate" pattern="dd-MM-yyyy" />
+										${formattedDate}
+										à
+										<fmt:parseDate value="${article.heureF}" var="parsedTime" pattern="HH:mm" />
+										<fmt:formatDate value="${parsedTime}" var="formattedTime" pattern="HH:mm" />
+										${formattedTime}
+											
+									</p>
 										
-										</div>
-									
-									</fieldset>
-									<!-- Fin Fieldset for Auction Information -->
-									
-	                            <p class="articleContent"><span class="title-detailItem">Prix Initial :</span> ${article.prixInit} points</p>
-	                            
-								<div class="deliveryAdress">
-									<p class="articleContent"><span class="title-detailItem">Livraison (Adresse de retrait) :</span> ${article.adresseRetrait}</p>
 								</div>
+									
+							</fieldset>
+							<!-- Fin Fieldset for Auction Information -->
+									
+							<p class="articleContent"><span class="title-detailItem">Prix Initial :</span><span class="prixInit"> ${article.prixInit} points</span></p>
+	                            
+							<div class="deliveryAdress">
+								<p class="articleContent"><span class="title-detailItem">Livraison (Adresse de retrait) :</span> ${article.adresseRetrait}</p>
+							</div>
 			
-								<!-- "" -->
-						        <a class="edit-item" href="<%=request.getContextPath()%>/#">Modifier mon annonce</a>
+							<!-- "Modifie l'annonce de l'Utilisateur dans la base de données" -->
+							<a class="edit-item" href="<%=request.getContextPath()%>/UpdateItemServlet?idArticle=${article.idArticle}">Modifier mon annonce</a>
 								
-								<!-- Supprime l'annonce de l'Utilisateur de la base de donnée -->
-								<a class="delete-item" href="<%=request.getContextPath()%>/#">Supprimer mon annonce</a>	                            
-	                        </div>
+							<!-- "Supprime l'annonce de l'Utilisateur de la base de données" -->
+							<form action="DeleteItemServlet" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet article ? Cette action est irréversible.');">
+							    <input type="hidden" name="idArticle" value="${article.idArticle}">
+							    <button class="delete-item" type="submit">Supprimer</button>
+							</form>
+								                            
+						</div>
 	                    
-	                </c:forEach>
+					</c:forEach>
 	                
 	            </c:if>
 	            

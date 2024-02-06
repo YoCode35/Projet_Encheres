@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eni.encheres.bo.Categorie;
 import fr.eni.encheres.dal.CategorieDAO;
 
 public class CategorieDAOJdbcImpl implements CategorieDAO {
@@ -14,6 +15,8 @@ public class CategorieDAOJdbcImpl implements CategorieDAO {
 	private static final String SQL_SELECTBY_LIBELLE = "SELECT no_categorie FROM CATEGORIES WHERE libelle = ?";
 
 	private static final String SQL_SELECT_LIBELLE = "SELECT libelle FROM CATEGORIES";
+	
+	private static final String SQL_SELECTBY_ID = "SELECT libelle FROM CATEGORIES WHERE no_categorie = ?";
 
 	/**
 	 * Permet de récupérer la liste des Catégories (libellé).
@@ -51,7 +54,7 @@ public class CategorieDAOJdbcImpl implements CategorieDAO {
 	 * @return ID de la catégorie
 	 */
 	@Override
-	public int getCategoryIdByLabel(String categoryLabel) {
+	public int getCategorieIdByLabel(String categorieLabel) {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		ResultSet rs = null;
@@ -60,7 +63,7 @@ public class CategorieDAOJdbcImpl implements CategorieDAO {
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(SQL_SELECTBY_LIBELLE);
-			rqt.setString(1, categoryLabel);
+			rqt.setString(1, categorieLabel);
 			rs = rqt.executeQuery();
 
 			if (rs.next()) {
@@ -73,5 +76,57 @@ public class CategorieDAOJdbcImpl implements CategorieDAO {
 		}
 		return categoryId;
 	}
+	
+	@Override
+	public Categorie getCategoryById(int idCategories) {
+	    Categorie categorie = null;
+	    Connection cnx = null;
+	    PreparedStatement rqt = null;
+	    ResultSet rs = null;
+
+	    try {
+	        cnx = JdbcTools.getConnection();
+	        rqt = cnx.prepareStatement(SQL_SELECTBY_ID);
+	        rqt.setInt(1, idCategories);
+	        rs = rqt.executeQuery();
+
+	        if (rs.next()) {
+	            int categoryId = rs.getInt("idCategories");
+	            String libelle = rs.getString("libelle");
+	            categorie = new Categorie(categoryId, libelle);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        JdbcTools.closeResources(cnx, rqt, rs);
+	    }
+	    return categorie;
+	}
+	
+	@Override
+	public String getCategoryNameById(int id) {
+	    String categoryName = null;
+	    Connection cnx = null;
+	    PreparedStatement rqt = null;
+	    ResultSet rs = null;
+
+	    try {
+	        cnx = JdbcTools.getConnection();
+	        rqt = cnx.prepareStatement(SQL_SELECTBY_ID);
+	        rqt.setInt(1, id);
+	        rs = rqt.executeQuery();
+
+	        if (rs.next()) {
+	            categoryName = rs.getString("libelle"); // Récupération du libellé de la catégorie
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        JdbcTools.closeResources(cnx, rqt, rs);
+	    }
+	    return categoryName;
+	}
+
+
 
 }

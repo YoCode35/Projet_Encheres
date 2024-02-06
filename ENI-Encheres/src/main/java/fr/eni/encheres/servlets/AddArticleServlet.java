@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -24,11 +25,23 @@ import fr.eni.encheres.bo.Article;
 
 @MultipartConfig
 @WebServlet("/AddArticleServlet")
-public class AddArticleServlet extends HttpServlet {
+public class AddArticleServlet extends HttpServlet 
+{
     private static final long serialVersionUID = 1L;
+    
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{    
+		//Nom de la page pour le fil d'Ariane
+		String pageName = "Créer un nouvel article à vendre";
+		// Nom de la page à la requête en tant qu'attribut pour le fil d'Ariane
+		request.setAttribute("pageName", pageName);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("form_add_new_item.jsp");
+		dispatcher.forward(request, response);
+	}
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+    {
         // Récupérer 'userId' depuis la session
         HttpSession session = request.getSession();
         Integer userId = (Integer) session.getAttribute("userID");
@@ -55,7 +68,8 @@ public class AddArticleServlet extends HttpServlet {
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
 
-        try {
+        try 
+        {
             // Convertir et formater la date de début
             String outputDateD = DateTimeConverter.formatDate(dateD, inputFormat, outputFormat);
 
@@ -69,7 +83,7 @@ public class AddArticleServlet extends HttpServlet {
             String outputHeureF = DateTimeConverter.formatHour(heureF);
 
             // Récupérer le no_categorie correspondant au libellé
-            int categorieId = CategorieManager.getInstance().getCategoryIdByLabel(categorie);
+            int categorieId = CategorieManager.getInstance().getCategorieIdByLabel(categorie);
 
             // Conversion des chaînes en objets java.sql.Date et java.sql.Time
             // Après la modification
@@ -82,18 +96,19 @@ public class AddArticleServlet extends HttpServlet {
 
             // Ensuite, utilisez le constructeur correspondant
             Article a = new Article(nomArticle, desc, imgFileName, imgFilePath, dateDebut, formattedHeureDebut,
-                    dateFin, formattedHeureFin, prixInit, prixVente, userId, categorieId, adresseRetrait);
+                    				dateFin, formattedHeureFin, prixInit, prixVente, userId, categorieId, adresseRetrait);
 
             // Ajouter l'article avec l'InputStream du fichier à ArticleManager
             ArticleManager.getInstance().ajouterArticle(a, fileInputStream);
-
+            
             // Définir l'attribut de session pour le message de confirmation
-            session.setAttribute("confirmationMessage", "Votre article a été ajouté avec succès !");
-
+            session.setAttribute("addItem_confirmMessage", "Votre article a été ajouté avec succès !");
+            
             // Redirection vers la page de confirmation après l'ajout réussi
             response.sendRedirect("form_add_new_item.jsp");
-
-        } catch (ParseException e) {
+        } 
+        catch (ParseException e) 
+        {
             // Gestion des erreurs de conversion de date
             e.printStackTrace();
             System.out.println("Erreur de conversion de date.");
@@ -101,7 +116,8 @@ public class AddArticleServlet extends HttpServlet {
         }
     }
 
-    private String formatDate(LocalDate date) {
+    private String formatDate(LocalDate date) 
+    {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         return date.format(formatter);
     }

@@ -30,7 +30,6 @@ public class ServletAddUsers extends HttpServlet
         String rue = request.getParameter("rue");
         String codePostal = request.getParameter("code_postal");
         String ville = request.getParameter("ville");
-        String password = request.getParameter("password");
         String confirmPassword = request.getParameter("confirmPassword");
 
         

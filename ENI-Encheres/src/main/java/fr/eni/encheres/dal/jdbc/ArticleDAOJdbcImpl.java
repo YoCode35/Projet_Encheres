@@ -20,7 +20,7 @@ import fr.eni.encheres.dal.ArticleDAO;
 public class ArticleDAOJdbcImpl implements ArticleDAO {
 
     private static final String SQL_INSERT = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, heure_debut_encheres, date_fin_encheres, heure_fin_encheres, prix_initial, no_utilisateur, no_categorie, adresse_retrait, img_FileName, img_FilePath) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    private static final String SQL_SELECTBY_ID = "SELECT no_article, nom_article, description, img_FileName, img_FilePath, date_debut_encheres, heure_debut_encheres, date_fin_encheres, heure_fin_encheres, prix_initial, adresse_retrait FROM ARTICLES_VENDUS WHERE no_article=? ";
+    private static final String SQL_SELECTBY_ID = "SELECT id, no_article, nom_article, description, img_FileName, img_FilePath, date_debut_encheres, heure_debut_encheres, date_fin_encheres, heure_fin_encheres, prix_initial, adresse_retrait FROM ARTICLES_VENDUS WHERE no_article=? ";
     private static final String SQL_SELECT_ALL = "SELECT no_article, nom_article, description, img_FileName, img_FilePath, date_debut_encheres, heure_debut_encheres, date_fin_encheres, heure_fin_encheres, prix_initial, no_utilisateur, no_categorie, adresse_retrait FROM ARTICLES_VENDUS";
     private static final String SQL_SELECT_ALL_BY_USERID = "SELECT * FROM ARTICLES_VENDUS WHERE no_utilisateur = ?";
     private static final String SQL_UPDATE = "UPDATE ARTICLES_VENDUS SET nom_article=?, description=?, img_FileName=?, img_FilePath=?, date_debut_encheres=?, heure_debut_encheres=?, date_fin_encheres=?, heure_fin_encheres=?, prix_initial=?, no_categorie=?, adresse_retrait=? WHERE no_article=?";
@@ -46,12 +46,15 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
             rqt.setInt(9, a.getNumeroCat());
             rqt.setString(10, a.getAdresseRetrait());
 
-            if (fichierInputStream != null) {
+            if (fichierInputStream != null) 
+            {
                 String imgFileName = Paths.get(a.getImgFilePath()).getFileName().toString();
                 enregistrerFichierPourArticle(fichierInputStream, a.getImgFilePath());
                 rqt.setString(11, imgFileName);
                 rqt.setString(12, a.getImgFilePath());
-            } else {
+            } 
+            else 
+            {
                 rqt.setString(11, null);
                 rqt.setString(12, null);
             }
@@ -59,19 +62,23 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
             rqt.executeUpdate();
 
             rs = rqt.getGeneratedKeys();
-            if (rs.next()) {
+            if (rs.next()) 
+            {
                 a.setIdArticle(rs.getInt(1));
             }
-        } catch (SQLException e) {
+        } 
+        catch (SQLException e) 
+        {
             e.printStackTrace();
-        } finally {
+        } 
+        finally 
+        {
             JdbcTools.closeResources(cnx, rqt, rs);
         }
     }
 
-    // Nouvelle méthode pour formater la date
     private String formatDate(LocalDate date) {
-        return date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        return (date != null) ? date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) : null;
     }
 
     @Override
@@ -86,7 +93,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
             rs = rqt.executeQuery();
             while (rs.next()) {
                 Article a = new Article();
-                a.setIdArticle(rs.getInt("no_article"));
+                a.setNoArticle(rs.getInt("no_article"));
                 a.setNomArticle(rs.getString("nom_article"));
                 a.setDesc(rs.getString("description"));
                 a.setDateD(rs.getObject("date_debut_encheres", LocalDate.class));
@@ -112,10 +119,12 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
     }
     
     @Override
-    public void update(Article a) {
+    public void updateArticle(Article a, InputStream fichierInputStream) 
+    {
         Connection cnx = null;
         PreparedStatement rqt;
-        try {
+        try 
+        {
             cnx = JdbcTools.getConnection();
             rqt = cnx.prepareStatement(SQL_UPDATE);
             rqt.setString(1, a.getNomArticle());
@@ -134,12 +143,19 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
             rqt.setInt(12, a.getIdArticle()); // Ajout du paramètre manquant
             rqt.executeUpdate();
-        } catch (SQLException e) {
+        } 
+        catch (SQLException e) 
+        {
             e.printStackTrace();
-        } finally {
-            try {
+        } 
+        finally 
+        {
+            try 
+            {
                 JdbcTools.closeConnection(cnx);
-            } catch (SQLException e) {
+            } 
+            catch (SQLException e) 
+            {
                 e.printStackTrace();
             }
         }
@@ -169,7 +185,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
     }
 
     @Override
-    public Article selectById(int articleId) {
+    public Article selectById(int itemId) {
         Connection cnx = null;
         PreparedStatement rqt = null;
         ResultSet rs = null;
@@ -178,12 +194,13 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
         try {
             cnx = JdbcTools.getConnection();
             rqt = cnx.prepareStatement(SQL_SELECTBY_ID);
-            rqt.setInt(1, articleId);
+            rqt.setInt(1, itemId);
             rs = rqt.executeQuery();
 
             if (rs.next()) {
                 a = new Article();
-                a.setIdArticle(rs.getInt("no_article"));
+                a.setIdArticle(rs.getInt("id"));
+                a.setNoArticle(rs.getInt("no_article"));
                 a.setNomArticle(rs.getString("nom_article"));
                 a.setDesc(rs.getString("description"));
                 a.setDateD(rs.getObject("date_debut_encheres", LocalDate.class));
@@ -262,5 +279,97 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
             e.printStackTrace(); // Gérer les exceptions de manière appropriée dans votre application
         }
     }
+    
+    @Override
+    public Article selectByNoArt(Article article) {
+        Connection cnx = null;
+        PreparedStatement rqt = null;
+        ResultSet rs = null;
+        Article selectedArticle = null;
+
+        try {
+            cnx = JdbcTools.getConnection();
+            String sqlQuery = "SELECT * FROM ARTICLES_VENDUS WHERE no_article = ? AND no_utilisateur = ?";
+            rqt = cnx.prepareStatement(sqlQuery);
+            rqt.setInt(1, article.getIdArticle());
+            rqt.setInt(2, article.getNumeroUtili());
+            rs = rqt.executeQuery();
+
+            if (rs.next()) {
+                selectedArticle = new Article();
+                selectedArticle.setIdArticle(rs.getInt("no_article"));
+                selectedArticle.setNomArticle(rs.getString("nom_article"));
+                selectedArticle.setDesc(rs.getString("description"));
+                selectedArticle.setDateD(rs.getObject("date_debut_encheres", LocalDate.class));
+                selectedArticle.setHeureD(rs.getObject("heure_debut_encheres", LocalTime.class));
+                selectedArticle.setDateF(rs.getObject("date_fin_encheres", LocalDate.class));
+                selectedArticle.setHeureF(rs.getObject("heure_fin_encheres", LocalTime.class));
+                selectedArticle.setPrixInit(rs.getInt("prix_initial"));
+                selectedArticle.setNumeroCat(rs.getInt("no_categorie"));
+                selectedArticle.setAdresseRetrait(rs.getString("adresse_retrait"));
+
+                // Ajouter d'autres attributs si nécessaire
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JdbcTools.closeResources(cnx, rqt, rs);
+        }
+
+        return selectedArticle;
+    }
+    
+    
+    // Méthode pour récupérer un article par son identifiant
+    public static Article getArticleById(int itemId) 
+    {
+    	Connection cnx = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Article item = null;
+        
+        try {
+            // Récupérer une connexion à la base de données
+        	cnx = JdbcTools.getConnection();
+
+            
+            // Définir la requête SQL pour récupérer l'article par son identifiant
+            String query = "SELECT * FROM ARTICLES_VENDUS WHERE id = ?";
+            
+            // Préparer la déclaration SQL
+            stmt = cnx.prepareStatement(query);
+            stmt.setInt(1, itemId);
+            
+            // Exécuter la requête
+            rs = stmt.executeQuery();
+            
+            // Vérifier si un enregistrement a été trouvé
+            if (rs.next()) {
+                // Créer un objet Article avec les informations récupérées de la base de données
+            	item = new Article();
+                item.setIdArticle(rs.getInt("id"));
+                item.setNoArticle(rs.getInt("no_article"));
+                item.setNomArticle(rs.getString("nom_article"));
+                item.setDesc(rs.getString("description"));
+                item.setDateD(rs.getObject("date_debut_encheres", LocalDate.class));
+                item.setHeureD(rs.getObject("heure_debut_encheres", LocalTime.class));
+                item.setDateF(rs.getObject("date_fin_encheres", LocalDate.class));
+                item.setHeureF(rs.getObject("heure_fin_encheres", LocalTime.class));
+                item.setPrixInit(rs.getInt("prix_initial"));
+                item.setNumeroCat(rs.getInt("no_categorie"));
+                item.setAdresseRetrait(rs.getString("adresse_retrait"));
+                // Ajout des informations sur l'image
+                item.setImgFileName(rs.getString("img_FileName"));
+                item.setImgFilePath(rs.getString("img_FilePath"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JdbcTools.closeResources(cnx, stmt, rs);
+        }
+       
+        return item;
+    }
+
 
 }

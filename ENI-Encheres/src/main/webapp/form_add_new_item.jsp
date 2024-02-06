@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.text.ParseException" %>
+
 <%@ page import="fr.eni.encheres.bll.CategorieManager" %>
 
 <!DOCTYPE html>
@@ -72,75 +74,101 @@
 		<!-- Header -->
 		<%@ include file="includes/header.jsp" %>
 		
-		<h2>- Ajouter un nouvel article -</h2>
+		<h2>Ajouter un nouvel article</h2>
 		
 	
 	    <%@ page session="true" %>
 	    
 	    <%
 	        // Récupérer le message de confirmation depuis la session
-	        String confirmationMessage = (String) session.getAttribute("confirmationMessage");
+	        String confirmationMessage = (String) session.getAttribute("addItem_confirmMessage");
 	
 	        // Vérifier si un message de confirmation existe
-	        if (confirmationMessage != null && !confirmationMessage.isEmpty()) {
+	        if (confirmationMessage != null && !confirmationMessage.isEmpty()) 
+	        {
 	    %>
-	    <div class="confirmation-message">
-	        <%= confirmationMessage %>
+	    <div class="addItem_confirmMessage">
+	    <%=		confirmationMessage %>
 	    </div>
 	    <%
-	        // Nettoyer l'attribut de session après l'avoir affiché
-	        session.removeAttribute("confirmationMessage");
-	    }
+		        // Nettoyer l'attribut de session après l'avoir affiché
+		        session.removeAttribute("addItem_confirmMessage");
+		    }
 	    %>
 		
-	    <div class="form-container">
-	    
-		    <form class="additem" action="AddArticleServlet" method="post" enctype="multipart/form-data">
+		<form class="additem" action="AddArticleServlet" method="post" enctype="multipart/form-data">
 		
-		        <label class="additem" for="nomArticle">Nom de l'article* :</label>
-				<input class="inputitem custom-input" type="text" id="nomArticle" name="nomArticle" required><br>
-		
-		        <label class="additem" for="desc">Description* :</label>
-		        <textarea id="desc" name="desc" rows="4" cols="50" required></textarea><br>
-		
-		        <label class="additem" for="categorie">Catégorie :</label>
-		       	<select id="categorie" name="categorie">
-		            <% 	List<String> categories = CategorieManager.getInstance().getValidCategories();
-		            	for (String category : categories) 
-		            	{ 
-		            %>
-		            		<option value="<%= category %>"><%= category %></option>
-		            <% 	} %>
-		        </select>		
-		
-				<label class="additem" for="file">Sélectionner une image :</label>
-        		<input class="additem" type="file" name="file" id="file" accept="image/*">
-		        <!--<label class="additem" for="imageFile">Image :</label>
-		        <input class="inputitem" type="file" name="imageFile" id="imageFile"/>-->
-		
-		        <label class="additem" for="dateD">Date de début de l'enchère :</label>
-		        <input class="inputitem" type="date" id="dateD" name="dateD">
-		        <label class="additem" for="heureD">Heure de début :</label>
-		        <input class="inputitem" type="time" id="heureD" name="heureD"><br>
-		
-		        <label class="additem" for="dateF">Date de fin de l'enchère :</label>
-		        <input class="inputitem" type="date" id="dateF" name="dateF">
-		        <label class="additem" for="heureF">Heure de fin :</label>
-		        <input class="inputitem" type="time" id="heureF" name="heureF"><br>
-		
-		        <label class="additem" for="prixInit">Prix initial (point(s)) :</label>
-		        <input class="inputitem" type="number" id="prixInit" name="prixInit" placeholder="point(s)"><br>
-		
-		        <label class="additem" for="adresseRetrait">Adresse de retrait (<em>Par défaut, celle de votre profil</em>) :</label>
-		        <textarea name="adresseRetrait" id="adresseRetrait" rows="4" cols="50">
-		            <%= session.getAttribute("userCoordonnees") %>
-		        </textarea>
-		
-		        <button type="submit" class="additem">Ajouter l'article</button>
-		
-		    </form>
+	    	<div class="form-container">	    
 		    
-		</div>
+				<!-- Begin Fieldset for New Article -->
+				<fieldset class="newArticle">
+				
+					<legend class="infoItem">Informations sur l'article</legend>
+				
+			        <label class="additem" for="nomArticle">Nom de l'article* :</label>
+					<input class="inputitem" type="text" id="nomArticle" name="nomArticle" required><br>
+			
+			        <label class="additem" for="desc">Description* :</label>
+			        <textarea id="desc" name="desc" rows="4" cols="50" required></textarea><br>
+			
+			        <label class="additem" for="categorie">Catégorie :</label>
+			       	<select id="categorie" name="categorie">
+			            <% 	List<String> categories = CategorieManager.getInstance().getValidCategories();
+			            	for (String category : categories) 
+			            	{ 
+			            %>
+			            		<option value="<%= category %>"><%= category %></option>
+			            <% 	} %>
+			        </select>		
+			
+					<label class="additem" for="file">Sélectionner une image :</label>
+	        		<input class="additem" type="file" name="file" id="file" accept="image/*">
+	        		
+				</fieldset>
+				<!-- End Fieldset for New Article -->
+				
+				<!-- Début Fieldset for News Auction Infos Dates -->
+				<fieldset class="newArticle">
+				
+					<legend class="infoItem">Détails de l'enchère</legend>
+				
+			        <label class="additem" for="dateD">Date de début de l'enchère :</label>
+			        <input class="inputitem" type="date" id="dateD" name="dateD">
+			        <label class="additem" for="heureD">Heure de début :</label>
+			        <input class="inputitem" type="time" id="heureD" name="heureD"><br>
+			
+			        <label class="additem" for="dateF">Date de fin de l'enchère :</label>
+			        <input class="inputitem" type="date" id="dateF" name="dateF">
+			        <label class="additem" for="heureF">Heure de fin :</label>
+			        <input class="inputitem" type="time" id="heureF" name="heureF"><br>
+		        
+				</fieldset>
+				<!-- End Fieldset for News Auction Infos Dates -->
+				
+				<!-- Début Fieldset for Starting Price & Delivery -->
+				<fieldset class="newArticle">
+				
+					<legend class="infoItem">Prix de départ et livraison</legend>
+				
+			        <label class="additem" for="prixInit">Prix initial (point(s)) :</label>
+			        <input class="inputitem" type="number" id="prixInit" name="prixInit" placeholder="point(s)"><br>
+			
+			        <label class="additem" for="adresseRetrait">Adresse de retrait (<em>Par défaut, celle de votre profil</em>) :</label>
+			        <textarea name="adresseRetrait" id="adresseRetrait" rows="4" cols="50">
+			            <%= session.getAttribute("userCoordonnees") %>
+			        </textarea>
+			        
+				</fieldset>
+				<!-- End Fieldset for Starting Price & Delivery -->
+	    
+			</div>
+			
+			<button type="submit" class="additem">Ajouter l'article</button>			
+		
+		</form>
+		
+		<!-- Retour sur la page user sans les modifications -->
+		<a class="back" href="<%=request.getContextPath()%>/MyItemsServlet">Retour</a>
 	
 	</body>
 

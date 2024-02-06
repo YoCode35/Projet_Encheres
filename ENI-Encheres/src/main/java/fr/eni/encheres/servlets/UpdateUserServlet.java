@@ -1,6 +1,8 @@
 package fr.eni.encheres.servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,14 +20,26 @@ import fr.eni.encheres.bo.Utilisateur;
 public class UpdateUserServlet extends HttpServlet 
 {
 	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
+		//Nom de la page pour le fil d'Ariane
+		String pageName = "Modifier mon profil";
+		// Nom de la page à la requête en tant qu'attribut pour le fil d'Ariane
+		request.setAttribute("pageName", pageName);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("updateUser.jsp");
+		dispatcher.forward(request, response);
+	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
 		HttpSession session = request.getSession();
 
 		String pseudo = request.getParameter("pseudo");
@@ -44,21 +58,23 @@ public class UpdateUserServlet extends HttpServlet
 
 		boolean etatPassword; // est false si ancien pwd, si c'est un nouveau password = true
 
-		if (password == null || password.length() <= 0) {
+		if (password == null || password.length() <= 0) 
+		{
 			password = (String) session.getAttribute("userPassword");
 			etatPassword = false;
-		} else
+		} 
+		else
+		{
 			etatPassword = true;
+		}
 
-
-		Utilisateur u = new Utilisateur(idUser, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, password,
-				credit, admin);
+		Utilisateur u = new Utilisateur(idUser, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, password, credit, admin);
 
 		UtilisateurManager.getInstance().updateUser(u, etatPassword);
 		
 		// Pour modifier le mot de passe dans la session en cours
-		if (password != null) {
-			
+		if (password != null) 
+		{			
 			session.setAttribute("userPassword", u.getMotDePasse());
 		}
 		//"UPDATE" Modification des données Utilisateur enregistré dans la base de donnée
@@ -72,9 +88,8 @@ public class UpdateUserServlet extends HttpServlet
 		session.setAttribute("userVille", u.getVille());
 		session.setAttribute("userCoordonnees", u.getRue() + ", " + u.getCodePostal() + " " + u.getVille());
 
-		//Redirige vers la jsp userProfil
-		response.sendRedirect("userProfil.jsp");
-
+		//Redirige vers UserProfil
+		response.sendRedirect("UserProfilServlet");
 	}
-
+	
 }

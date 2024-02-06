@@ -63,7 +63,7 @@
 			</div>
 			
 			<!-- "UPDATE" Renvoie à la Servlet pour faire l'UPDATE -->
-	        <a class="edit-account" href="<%=request.getContextPath()%>/updateUser.jsp">Modifier mon Compte</a>
+	        <a class="edit-account" href="<%=request.getContextPath()%>/UpdateUserServlet">Modifier mon Compte</a>
 			
 			<!-- Supprime le profil Utilisateur de la base de donnée -->
 			<a class="delete-account" href="<%=request.getContextPath()%>/userDeleteConfirmation.jsp">Supprimer mon compte</a>

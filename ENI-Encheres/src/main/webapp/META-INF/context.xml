@@ -9,7 +9,7 @@
 	
 		url = "jdbc:sqlserver://localhost;databasename=ENCHERES_DB;encrypt=false;trustservercertificate=true"
 		username = "sa"
-		password = "Pa$$w0rd"
+		password = "Pa$$word"
 		
 		maxTotal = "100"
 		maxIdle = "30"

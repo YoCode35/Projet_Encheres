@@ -4,7 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Article {
-    private int idArticle;
+    private int itemId;
+    private int noArticle;
     private String nomArticle;
     private String desc;
     private String imgFileName;
@@ -17,9 +18,12 @@ public class Article {
     private int prixVente;
     private int numeroUtili;
     private int numeroCat;
+    private Categorie categorie;
+    private String categoryName;
     private String adresseRetrait;
 
     public Article() {
+        // Constructeur par défaut
     }
 
     /**
@@ -37,32 +41,40 @@ public class Article {
      * @param numeroCat
      * @param adresseRetrait
      */
-    public Article(String nomArticle, String desc, String imgFileName, String imgFilePath, LocalDate dateD, LocalTime heureD,
-                   LocalDate dateF, LocalTime heureF, int prixInit, int prixVente,
-                   int numeroUtili, int numeroCat, String adresseRetrait) {
-        this.nomArticle = nomArticle;
-        this.desc = desc;
-        this.imgFileName = imgFileName;
-        this.imgFilePath = imgFilePath;
-        this.dateD = dateD;
-        this.heureD = heureD;
-        this.dateF = dateF;
-        this.heureF = heureF;
-        this.prixInit = prixInit;
-        this.prixVente = prixVente;
-        this.numeroUtili = numeroUtili;
-        this.numeroCat = numeroCat;
-        this.adresseRetrait = adresseRetrait;
-    }
+    public Article(String nomArticle, String desc, String imgFileName, String imgFilePath, 
+    	    LocalDate dateD, LocalTime heureD, LocalDate dateF, LocalTime heureF,
+    	    int prixInit, int prixVente, int numeroUtili, int numeroCat, String adresseRetrait) {
+    		this.nomArticle = nomArticle;
+    	    this.desc = desc;
+    	    this.imgFileName = imgFileName;
+    	    this.imgFilePath = imgFilePath;
+    	    this.dateD = dateD;
+    	    this.heureD = heureD;
+    	    this.dateF = dateF;
+    	    this.heureF = heureF;
+    	    this.prixInit = prixInit;
+    	    this.prixVente = prixVente;
+    	    this.numeroUtili = numeroUtili;
+    	    this.numeroCat = numeroCat;
+    	    this.adresseRetrait = adresseRetrait;
+    	}
 
     // Autres méthodes et getters/setters...
 
     public int getIdArticle() {
-        return idArticle;
+        return itemId;
     }
 
-    public void setIdArticle(int idArticle) {
-        this.idArticle = idArticle;
+    public void setIdArticle(int itemId) {
+        this.itemId = itemId;
+    }
+    
+    public int getNoArticle() {
+        return noArticle;
+    }
+
+    public void setNoArticle(int noArticle) {
+        this.noArticle = noArticle;
     }
     
     public String getNomArticle() {
@@ -160,6 +172,22 @@ public class Article {
     public void setNumeroCat(int numeroCat) {
         this.numeroCat = numeroCat;
     }
+    
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+        
+    public Categorie getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(Categorie categorie) {
+        this.categorie = categorie;
+    }
 
     public String getAdresseRetrait() {
         return adresseRetrait;
@@ -172,7 +200,8 @@ public class Article {
     @Override
     public String toString() {
         return "Article"
-        		+ "[idArticle=" + idArticle 
+        		+ "[itemId=" + itemId
+        		+ ", noArticle=" + noArticle 
         		+ ", nomArticle=" + nomArticle 
         		+ ", desc=" + desc 
         		+ ", imgFileName=" + imgFileName 

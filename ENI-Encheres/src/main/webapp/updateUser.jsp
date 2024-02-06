@@ -68,7 +68,7 @@
 				<button class="confirm" type="submit">Confirmer la Modification</button>
 		
 				<!-- Retour sur la page user sans les modifications -->
-		  		<a class="retour" href="<%=request.getContextPath()%>/userProfil.jsp"><button type="button">Retour</button></a>
+		  		<a class="retour" href="<%=request.getContextPath()%>/UserProfilServlet"><button type="button">Retour</button></a>
 		  	
 			</form>
 			

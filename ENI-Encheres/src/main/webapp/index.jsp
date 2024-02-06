@@ -111,7 +111,7 @@
 									</fieldset>
 									<!-- Fin Fieldset for Auction Information -->
 		                    
-		                            <p class="articleContent"><span class="title-detailItem">Prix Initial :</span> ${article.prixInit} points</p>
+		                            <p class="articleContent"><span class="title-detailItem">Prix Initial :</span><span class="prixInit"> ${article.prixInit} points</span></p>
 		                            
 		                            <div class="deliveryAdress">
 		                            	<p class="articleContent"><span class="title-detailItem">Livraison (Adresse de retrait) :</span> ${article.adresseRetrait}</p>
